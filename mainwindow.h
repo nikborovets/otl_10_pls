@@ -15,6 +15,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_actionOpen_triggered();
+
+    void on_AddForm_clicked();
+
+    void on_RemoveForm_clicked();
+
+    void on_MoveUp_clicked();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
