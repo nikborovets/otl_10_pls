@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,15 +17,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionOpen_triggered();
+    void on_action_open_triggered();
 
-    void on_AddForm_clicked();
-
-    void on_RemoveForm_clicked();
-
-    void on_MoveUp_clicked();
-
-    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;
