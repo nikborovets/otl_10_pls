@@ -19,7 +19,7 @@
    </property>
    <layout class="QGridLayout" name="gridLayout_5">
     <item row="0" column="0">
-     <widget class="QGraphicsView" name="graphicsView"/>
+     <widget class="QGraphicsView" name="graphics_view"/>
     </item>
    </layout>
   </widget>
@@ -142,7 +142,7 @@
      <item row="1" column="0">
       <widget class="QPushButton" name="add_pattern">
        <property name="text">
-        <string>Add</string>
+        <string>add pattern</string>
        </property>
       </widget>
      </item>

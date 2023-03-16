@@ -41,6 +41,8 @@ else()
     mainwindow.h
     mainwindow.ui
     ToolsBar.qrc
+    move_item.cpp
+    move_item.h
   )
 endif()
 
