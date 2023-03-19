@@ -1,22 +1,22 @@
 #include "move_item.h"
 
-move_item::move_item(QObject* parent) :
+MoveItem::MoveItem(QObject* parent) :
     QObject(parent), QGraphicsItem()
 {
 
 }
 
-move_item::~move_item()
+MoveItem::~MoveItem()
 {
 
 }
 
-QRectF move_item::boundingRect() const
+QRectF MoveItem::boundingRect() const
 {
     return QRectF (-30,-30,60,60);
 }
 
-void move_item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void MoveItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     painter->setPen(Qt::black);
     painter->setBrush(Qt::green);
@@ -25,26 +25,27 @@ void move_item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
     Q_UNUSED(widget);
 }
 
-void move_item::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
     /* Устанавливаем позицию графического элемента
      * в графической сцене, транслировав координаты
      * курсора внутри графического элемента
      * в координатную систему графической сцены
      * */
-    this->setPos(mapToScene(event->pos()));
+    this->setPos(mapToScene(event->pos() + m_shiftMouseCoords));
 }
 
-void move_item::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     /* При нажатии мышью на графический элемент
      * заменяем курсор на руку, которая держит этот элемента
      * */
+    m_shiftMouseCoords = this->pos() - mapToScene(event->pos());
     this->setCursor(QCursor(Qt::ClosedHandCursor));
     Q_UNUSED(event);
 }
 
-void move_item::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+void MoveItem::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
     /* При отпускании мышью элемента
      * заменяем на обычный курсор стрелку

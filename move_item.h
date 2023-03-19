@@ -9,20 +9,23 @@
 #include <QCursor>
 
 
-class move_item : public QObject, public QGraphicsItem
+class MoveItem : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-    move_item(QObject* parent = 0);
-    ~move_item();
+    MoveItem(QObject* parent = 0);
+    ~MoveItem();
 
 
 private:
+    QPointF m_shiftMouseCoords;
+
     QRectF boundingRect() const;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
+
 
 };
 

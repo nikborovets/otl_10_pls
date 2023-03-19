@@ -31,7 +31,7 @@ static int random_between(int low, int high)
 
 void MainWindow::on_add_pattern_clicked()
 {
-    move_item* item = new move_item();
+    MoveItem* item = new MoveItem();
     item->setPos(random_between(100, 200), random_between(100, 200));
     scene->addItem(item);
 }
