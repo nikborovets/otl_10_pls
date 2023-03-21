@@ -7,6 +7,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <QCursor>
+#include <QApplication>
 
 
 class MoveItem : public QObject, public QGraphicsItem

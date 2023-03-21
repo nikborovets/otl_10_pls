@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "QFileDialog"
 
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -22,6 +23,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_action_open_triggered()
 {
     QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
+}
+
+void MainWindow::on_action_remove_triggered()
+{
+
 }
 
 static int random_between(int low, int high)

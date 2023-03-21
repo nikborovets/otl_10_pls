@@ -40,7 +40,6 @@
     <addaction name="action_save"/>
     <addaction name="actionSave_as"/>
     <addaction name="action_print"/>
-    <addaction name="action_exit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -64,6 +63,7 @@
      <string>Tools</string>
     </property>
     <addaction name="action_settings"/>
+    <addaction name="action_remove"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -95,7 +95,7 @@
    <addaction name="action_back"/>
    <addaction name="action_next"/>
    <addaction name="action_settings"/>
-   <addaction name="action_exit"/>
+   <addaction name="action_remove"/>
   </widget>
   <widget class="QDockWidget" name="InformationBoard">
    <property name="minimumSize">
@@ -212,18 +212,18 @@
     <string>Back</string>
    </property>
   </action>
-  <action name="action_exit">
-   <property name="icon">
-    <iconset resource="ToolsBar.qrc">
-     <normaloff>:/tools/image/exit.png</normaloff>:/tools/image/exit.png</iconset>
-   </property>
-   <property name="text">
-    <string>Exit</string>
-   </property>
-  </action>
   <action name="actionGuide">
    <property name="text">
     <string>Guide</string>
+   </property>
+  </action>
+  <action name="action_remove">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/tools/image/exit.png</normaloff>:/tools/image/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove</string>
    </property>
   </action>
  </widget>

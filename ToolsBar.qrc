@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/tools">
         <file>image/back.png</file>
-        <file>image/exit.png</file>
+        <file>image/remove.png</file>
         <file>image/index.png</file>
         <file>image/next.png</file>
         <file>image/open.png</file>

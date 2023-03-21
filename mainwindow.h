@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QGraphicsScene>
+#include <QGraphicsItem>
 
 #include <move_item.h>
 
@@ -21,6 +22,7 @@ public:
 
 private slots:
     void on_action_open_triggered();
+    void on_action_remove_triggered();
 
 
     void on_add_pattern_clicked();
