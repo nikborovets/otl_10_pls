@@ -5,7 +5,10 @@ GENERATOR::GENERATOR(std::string &s,std::string &s1)
     this->path_file = s;
     this->path_pattern = s1;
 }
-
+GENERATOR::GENERATOR(std::string &s)
+{
+    this->path_file = s;
+}
 
 void GENERATOR::scan()
 {

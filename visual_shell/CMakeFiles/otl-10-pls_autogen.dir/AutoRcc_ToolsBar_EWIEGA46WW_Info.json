@@ -1,0 +1,30 @@
+{
+	"BUILD_DIR" : "/home/ilay_kar/otl_10_pls/visual_shell/otl-10-pls_autogen",
+	"CMAKE_BINARY_DIR" : "/home/ilay_kar/otl_10_pls/visual_shell",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/ilay_kar/otl_10_pls/visual_shell",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/ilay_kar/otl_10_pls",
+	"CMAKE_SOURCE_DIR" : "/home/ilay_kar/otl_10_pls",
+	"INCLUDE_DIR" : "/home/ilay_kar/otl_10_pls/visual_shell/otl-10-pls_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/ilay_kar/otl_10_pls/image/print.png",
+		"/home/ilay_kar/otl_10_pls/image/save.png",
+		"/home/ilay_kar/otl_10_pls/image/open.png",
+		"/home/ilay_kar/otl_10_pls/image/picture.png",
+		"/home/ilay_kar/otl_10_pls/image/next.png",
+		"/home/ilay_kar/otl_10_pls/image/back.png",
+		"/home/ilay_kar/otl_10_pls/image/remove.png",
+		"/home/ilay_kar/otl_10_pls/image/index.png",
+		"/home/ilay_kar/otl_10_pls/image/settings.png"
+	],
+	"LOCK_FILE" : "/home/ilay_kar/otl_10_pls/visual_shell/CMakeFiles/otl-10-pls_autogen.dir/AutoRcc_ToolsBar_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "ToolsBar" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_ToolsBar.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt5/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/ilay_kar/otl_10_pls/visual_shell/CMakeFiles/otl-10-pls_autogen.dir/AutoRcc_ToolsBar_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/ilay_kar/otl_10_pls/ToolsBar.qrc",
+	"VERBOSITY" : 0
+}

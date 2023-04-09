@@ -1,0 +1,4 @@
+/home/ilay_kar/otl_10_pls/visual_shell/CMakeFiles/rebuild_cache.dir
+/home/ilay_kar/otl_10_pls/visual_shell/CMakeFiles/edit_cache.dir
+/home/ilay_kar/otl_10_pls/visual_shell/CMakeFiles/otl-10-pls.dir
+/home/ilay_kar/otl_10_pls/visual_shell/CMakeFiles/otl-10-pls_autogen.dir

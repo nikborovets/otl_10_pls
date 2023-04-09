@@ -19,8 +19,9 @@ class GENERATOR
     std::string path_pattern;
 
 public:
+    GENERATOR(std::string &s,std::string &s1);
     GENERATOR(std::string &s);
-    void scan(std::string &s);
+    void scan();
     void printfile();
     void c_function(std::string &path,QVector<double> &params);
     void amplitude(double max_val ,double min_val);

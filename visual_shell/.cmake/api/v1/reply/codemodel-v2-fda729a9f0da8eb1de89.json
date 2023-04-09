@@ -1,0 +1,68 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "otl-10-pls",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "otl-10-pls::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-otl-10-pls-Debug-3edb8ceb9f749ee42fdb.json",
+					"name" : "otl-10-pls",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "otl-10-pls_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-otl-10-pls_autogen-Debug-1e176eda54f4b5146296.json",
+					"name" : "otl-10-pls_autogen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ilay_kar/otl_10_pls/visual_shell",
+		"source" : "/home/ilay_kar/otl_10_pls"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

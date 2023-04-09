@@ -2,6 +2,8 @@
 #include "./ui_mainwindow.h"
 #include "QFileDialog"
 
+QString str;
+
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -22,7 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_action_open_triggered()
 {
-    QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
+    str = QFileDialog::getExistingDirectory(0, "Choose file", "");
 }
 
 void MainWindow::on_action_remove_triggered()
@@ -40,4 +42,10 @@ void MainWindow::on_add_pattern_clicked()
     MoveItem* item = new MoveItem();
     item->setPos(random_between(100, 200), random_between(100, 200));
     scene->addItem(item);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    char* s ="//home//ilay_kar//otl_10_pls//vicislitel//untitled8";
+    system(s);
 }

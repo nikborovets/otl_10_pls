@@ -8,11 +8,11 @@ using namespace std;
 
 
 
-int main1()
+int main()
 {
     string s = "/home/ilay_kar/Документы/untitled7/AKIP0001.csv";
-    GENERATOR a;
-    a.scan(s);
+    GENERATOR a(s);
+    a.scan();
     a.amplitude(0.0009);
     a.printfile();
     return 0;

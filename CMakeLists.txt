@@ -29,9 +29,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 if(ANDROID)
   add_library(otl-10-pls SHARED
     main.cpp
-    main1.cpp
-    generator.cpp
-    generator.h
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
@@ -40,9 +37,6 @@ if(ANDROID)
 else()
   add_executable(otl-10-pls
     main.cpp
-    main1.cpp
-    generator.cpp
-    generator.h
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
