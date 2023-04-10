@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QCursor>
 #include <QApplication>
+#include <QWidget>
 
 
 class MoveItem : public QObject, public QGraphicsItem
@@ -26,6 +27,7 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
+    void mouseDoubleCLickEvent(QGraphicsSceneMouseEvent* event);
 
 
 };

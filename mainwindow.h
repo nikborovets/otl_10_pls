@@ -8,6 +8,19 @@
 
 #include <move_item.h>
 
+
+class Settings
+{
+public:
+
+    char* get_path() const;
+    void set_path(char* path);
+
+private:
+    char *path;
+
+};
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -32,5 +45,8 @@ private slots:
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
+
+    Settings* shish;
 };
+
 #endif // MAINWINDOW_H
