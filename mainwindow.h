@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QSettings>
+
 
 #include "move_item.h"
 

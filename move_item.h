@@ -16,20 +16,23 @@ class MoveItem : public QObject, public QGraphicsItem
     Q_OBJECT
 public:
     MoveItem(QObject* parent = 0);
+    MoveItem(QWidget* parentWidget, QGraphicsItem* parent);
     ~MoveItem();
 
 
 private:
-    QPointF m_shiftMouseCoords;
-
     QRectF boundingRect() const;
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
     void mouseDoubleCLickEvent(QGraphicsSceneMouseEvent* event);
 
 
+private:
+    QWidget* m_parentWidget;
+    QPointF m_shiftMouseCoords;
 };
 
 #endif // MOVE_ITEM_H

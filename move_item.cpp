@@ -3,8 +3,16 @@
 MoveItem::MoveItem(QObject* parent) :
     QObject(parent), QGraphicsItem()
 {
-
+    setFlag(ItemIsSelectable);
 }
+
+MoveItem::MoveItem(QWidget* parentWidget, QGraphicsItem* parent) :
+    QGraphicsItem(parent),
+    m_parentWidget(parentWidget)
+{
+    setFlag(ItemIsSelectable);
+}
+
 
 MoveItem::~MoveItem()
 {
@@ -13,7 +21,7 @@ MoveItem::~MoveItem()
 
 QRectF MoveItem::boundingRect() const
 {
-    return QRectF (-30,-30,60,60);
+    return QRectF (-30, -30, 60, 60);
 }
 
 void MoveItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
@@ -37,6 +45,14 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 
 void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+    if (event->button() == Qt::LeftButton) {
+        QWidget *widget = new QWidget();
+        widget->setWindowTitle("My Widget");
+        widget->resize(200, 200);
+        widget->show();
+    }
+
+
     if (QApplication::mouseButtons() == Qt::RightButton)
     {
         this->deleteLater();
