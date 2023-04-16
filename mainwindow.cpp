@@ -66,12 +66,21 @@ void MainWindow::on_pushButton_clicked()
     }
     else
     {
-        QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
-        str += "/untitled8";
-        const int buffer_size = str.size() + 1;
-        char *path = shish->get_path();
-        path = new char [buffer_size];
-        strcpy(path, str.toUtf8().constData());
+        QFileDialog dialog;
+        QString file_name;
+        dialog.setNameFilter("Executable (*.o)");
+        if (dialog.exec() == QDialog::Accepted)
+        {
+                file_name = dialog.selectedFiles().first();
+                qDebug() << "Выбранный файл: " << file_name;
+        }
+
+        //QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
+        //str += "/untitled8";
+        //const int buffer_size = str.size() + 1;
+        //char *path = shish->get_path();
+        char* path = new char [file_name.size()];
+        strcpy(path, file_name.toUtf8().constData());
         shish->set_path(path);
     }
     system(shish->get_path());
