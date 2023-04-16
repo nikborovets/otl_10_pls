@@ -6,7 +6,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 
-#include <move_item.h>
+#include "move_item.h"
 
 
 class Settings

@@ -48,7 +48,7 @@ void MainWindow::on_action_remove_triggered()
 
 static int random_between(int low, int high)
 {
-    return (qrand() % ((high + 1) - low) + low);
+    return (rand() % ((high + 1) - low) + low);
 }
 
 void MainWindow::on_add_pattern_clicked()
