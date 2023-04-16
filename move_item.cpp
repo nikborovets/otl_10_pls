@@ -1,4 +1,5 @@
 #include "move_item.h"
+#include "MyWidget.h"
 
 MoveItem::MoveItem(QObject* parent) :
     QObject(parent), QGraphicsItem()
@@ -46,7 +47,7 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton) {
-        QWidget *widget = new QWidget();
+        MyWidget *widget = new MyWidget();
         widget->setWindowTitle("My Widget");
         widget->resize(200, 200);
         widget->show();

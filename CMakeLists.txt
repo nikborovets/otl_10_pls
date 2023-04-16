@@ -20,6 +20,8 @@ set(PROJECT_SOURCES
         move_item.cpp
         move_item.h
         ToolsBar.qrc
+        MyWidget.h
+        MyWidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
