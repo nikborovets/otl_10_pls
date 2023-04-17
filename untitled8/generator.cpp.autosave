@@ -77,7 +77,7 @@ void GENERATOR::amplitude(double max_val)
 void GENERATOR::graph_multiplication(double k)
 {
     double c = 0;
-    for(long i =0;i<this->x.size();i++)
+    for(long i =0; i < this->x.size(); i++)
     {
         c = this->y[i];
         c = c * k;

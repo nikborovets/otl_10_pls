@@ -14,6 +14,7 @@ int main()
     GENERATOR a(s);
     a.scan();
     a.amplitude(0.0009);
+    a.graph_multiplication(4);
     a.printfile();
     return 0;
 
