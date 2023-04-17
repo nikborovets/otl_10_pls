@@ -50,11 +50,9 @@ void scan(std::string path_file, QVector<double> &x, QVector<double> &y)
 GraphWidget::GraphWidget(QWidget* parent)
     : QWidget(parent)
 {
-    std::string fpath = "//home//makar//xfd//AKIP0001.csv";
+    std::string fpath = "C://QT_Projects//otl_10_pls//AKIP0001.csv";
     // Создаем экземпляр QCustomPlot
     m_plot = new QCustomPlot(this);
-    scan(fpath, this->x, this->y);
-    m_plot->plotLayout()->insertRow(0);
 
     // Добавляем элементы для масштабирования
     m_plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
@@ -71,6 +69,9 @@ GraphWidget::GraphWidget(QWidget* parent)
     // Создаем график синусоиды
     QCPGraph* graph = m_plot->addGraph();
 
+    scan(fpath, this->x, this->y);
+    qDebug() << x << y;
+
     graph->setPen(QPen(Qt::blue));
     graph->setBrush(QBrush(QColor(0, 0, 255, 20)));
 
@@ -82,8 +83,11 @@ GraphWidget::GraphWidget(QWidget* parent)
 
     connect(button, &QPushButton::clicked, this, [this](){
         // Обновляем график случайными данными
+
+
         m_plot->graph(0)->setData(x, y);
         m_plot->rescaleAxes();
         m_plot->replot();
     });
+
 }
