@@ -4,24 +4,13 @@
 #include <QDir>
 #include <iostream>
 
-char* Settings::get_path() const
-{
-    return this->path;
-}
-
-void Settings::set_path(char* path)
-{
-    this->path = path;
-}
-
-
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      shish(new Settings)
+      shish(new QSettings)
 {
-    shish->set_path("\0");
+    shish->setValue("Path", "\0");
     ui->setupUi(this);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
 
@@ -58,11 +47,14 @@ void MainWindow::on_add_pattern_clicked()
     scene->addItem(item);
 }
 
-void MainWindow::on_pushButton_clicked()
+
+void MainWindow::on_push_button_clicked()
 {
-    if (strlen(shish->get_path()) > 0)
+    QSettings settings("Path", "\0");
+    QString filePath = settings.value("Path").toString();
+    if (filePath.size() > 0)
     {
-        qDebug() << shish->get_path();
+        qDebug() << filePath;
     }
     else
     {
@@ -81,7 +73,9 @@ void MainWindow::on_pushButton_clicked()
         //char *path = shish->get_path();
         char* path = new char [file_name.size()];
         strcpy(path, file_name.toUtf8().constData());
-        shish->set_path(path);
+
+        shish->setValue("Path", QString::fromUtf8(path));
     }
-    system(shish->get_path());
+    system(shish->value("Path").toString().toUtf8().data());
+
 }

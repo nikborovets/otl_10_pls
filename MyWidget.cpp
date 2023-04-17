@@ -2,7 +2,7 @@
 
 MyWidget::MyWidget(QWidget *parent) : QWidget(parent)
 {
-    QLabel *label = new QLabel("Enter your name:", this);
+    QLabel *label = new QLabel("Частота:", this);
     QLineEdit *edit = new QLineEdit(this);
     QPushButton *button = new QPushButton("OK", this);
 
@@ -11,7 +11,7 @@ MyWidget::MyWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(edit);
     layout->addWidget(button);
 
-    /*connect(button, &QPushButton::clicked, this, [=]() {
-        QMessageBox::information(this, "Message", "Hello, " + edit->text() + "!");
-    });*/
+    connect(button, &QPushButton::clicked, this, [=]() {
+
+    });
 }

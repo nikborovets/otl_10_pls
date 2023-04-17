@@ -7,10 +7,13 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QMessageBox>
+#include <QFileDialog>
 
 class MyWidget : public QWidget {
 public:
     MyWidget(QWidget *parent = 0);
+
+
 };
 
 
