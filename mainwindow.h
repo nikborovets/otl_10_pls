@@ -5,8 +5,12 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QSettings>
+#include <QString>
 
-#include <move_item.h>
+
+#include "move_item.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,10 +31,13 @@ private slots:
 
     void on_add_pattern_clicked();
 
-    void on_pushButton_clicked();
+    void on_push_button_clicked();
 
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
+
+    QSettings* shish;
 };
+
 #endif // MAINWINDOW_H
