@@ -9,7 +9,9 @@
 #include <QString>
 
 
+
 #include "move_item.h"
+#include "MyPlot.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +40,7 @@ private:
     QGraphicsScene* scene;
 
     QSettings* shish;
+    GraphWidget* plot;
 };
 
 #endif // MAINWINDOW_H

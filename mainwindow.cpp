@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "QFileDialog"
+#include "MyPlot.h"
 #include <QDir>
 #include <iostream>
 
@@ -78,4 +79,7 @@ void MainWindow::on_push_button_clicked()
     }
     system(shish->value("Path").toString().toUtf8().data());
 
+    GraphWidget* plot = new GraphWidget(this);
+    plot->setWindowTitle("График");
+    plot->show();
 }
