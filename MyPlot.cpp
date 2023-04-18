@@ -50,7 +50,7 @@ void scan(std::string path_file, QVector<double> &x, QVector<double> &y)
 GraphWidget::GraphWidget(QWidget* parent)
     : QWidget(parent)
 {
-    std::string fpath = "C://QT_Projects//otl_10_pls//AKIP0001.csv";
+    std::string fpath = "C://c++//AKIP0001.csv";
     // Создаем экземпляр QCustomPlot
     m_plot = new QCustomPlot(this);
 
