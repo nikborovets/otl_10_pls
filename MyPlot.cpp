@@ -66,7 +66,7 @@ GraphWidget::GraphWidget(QWidget* parent)
     // Устанавливаем размеры виджета
     setFixedSize(640, 480);
 
-    // Создаем график синусоиды
+    // Создаем график
     QCPGraph* graph = m_plot->addGraph();
 
     scan(fpath, this->x, this->y);

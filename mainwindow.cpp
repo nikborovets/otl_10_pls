@@ -80,6 +80,7 @@ void MainWindow::on_push_button_clicked()
     system(shish->value("Path").toString().toUtf8().data());
 
     GraphWidget* plot = new GraphWidget(this);
+    plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
     plot->setWindowTitle("График");
     plot->show();
 }
