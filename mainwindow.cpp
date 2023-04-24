@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
 
+    db = new DataBase();
+    db->connectToDataBase();
+
     scene = new QGraphicsScene(this);   // Инициализируем графическую сцену
     ui->graphics_view->setScene(scene); //  Устанавливаем графическую сцену в graphics_view
     scene->setItemIndexMethod(QGraphicsScene::NoIndex); // настраиваем индексацию элементов
@@ -91,5 +94,11 @@ void MainWindow::on_set_button_clicked()
     MoveItem* item = new MoveItem();
     item->setPos(random_between(100, 200), random_between(100, 200));
     scene->addItem(item);
+}
+
+
+void MainWindow::on_save_button_clicked()
+{
+
 }
 

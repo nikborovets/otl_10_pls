@@ -8,6 +8,9 @@
 #include <QSettings>
 #include <QString>
 
+#include <QSqlTableModel>
+#include <DataBase.h>
+
 
 
 #include "move_item.h"
@@ -42,6 +45,9 @@ private:
 
     QSettings* shish;
     GraphWidget* plot;
+
+    DataBase* db;
+    QSqlTableModel* modelDevice;
 };
 
 #endif // MAINWINDOW_H
