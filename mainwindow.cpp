@@ -85,32 +85,6 @@ void MainWindow::on_push_button_clicked()
     plot->show();
 }
 
-void MainWindow::on_filters_information_itemClicked(QTreeWidgetItem *item, int column)
-{
-    // получаем информацию о выбранном элементе
-        int index = ui->filters_information->indexOfTopLevelItem(item);
-        // определяем виджет для отображения на основе параметров элемента
-        QWidget *widget = nullptr;
-        switch(index) {
-            case 0:
-                widget = new QPlainTextEdit();
-                break;
-            case 1:
-                widget = new QSpinBox();
-                break;
-            // и т. д.
-        }
-        if (widget) {
-            // добавляем виджет в layout текущего окна
-            QVBoxLayout *layout = new QVBoxLayout(widget);
-            layout->addWidget(widget);
-            widget->setLayout(layout);
-        }
-
-}
-
-
-
 
 void MainWindow::on_set_button_clicked()
 {
