@@ -31,9 +31,15 @@ private slots:
     void on_action_remove_triggered();
 
 
-    void on_add_pattern_clicked();
+    void on_add_pattern_2_clicked();
 
     void on_push_button_clicked();
+
+    void on_filters_information_itemClicked(QTreeWidgetItem *item, int column);
+
+    void on_filters_information_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+
+    void on_set_button_clicked();
 
 private:
     Ui::MainWindow* ui;

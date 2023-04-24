@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1396</width>
-    <height>992</height>
+    <width>663</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,42 +18,167 @@
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout_5">
-    <item row="0" column="0" colspan="3">
-     <widget class="QGraphicsView" name="graphics_view"/>
-    </item>
-    <item row="2" column="0" alignment="Qt::AlignLeft">
-     <widget class="QLabel" name="path">
-      <property name="text">
-       <string>Path:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="path_text">
-      <property name="text">
-       <string>Здесь будет ваш путь</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="push_button">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" colspan="2">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0" colspan="4">
+            <widget class="QGraphicsView" name="graphics_view"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="copy_button">
+             <property name="text">
+              <string>Копия</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="save_button">
+             <property name="text">
+              <string>Сохранить</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="delete_button">
+             <property name="text">
+              <string>Удалитб</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="set_button">
+             <property name="text">
+              <string>Вставить</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="2" rowspan="2">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="add_pattern_2">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QTreeWidget" name="filters_information">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Информация о преобразованиях</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>Ограничение амплитуды</string>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Стянуть к оси</string>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Фильтр 1</string>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Фильтр 2</string>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTreeWidget" name="filters">
+          <column>
+           <property name="text">
+            <string>Выбранный фильтр</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="calculate">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>90</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Calculate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="clear">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>90</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTreeWidget" name="patterns">
+        <column>
+         <property name="text">
+          <string>Шаблоны</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -62,7 +187,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1396</width>
+     <width>663</width>
      <height>21</height>
     </rect>
    </property>
@@ -131,61 +256,9 @@
    <addaction name="action_settings"/>
    <addaction name="action_remove"/>
   </widget>
-  <widget class="QDockWidget" name="InformationBoard">
-   <property name="minimumSize">
-    <size>
-     <width>373</width>
-     <height>836</height>
-    </size>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_4">
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QTreeWidget" name="tree_widget">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>768</height>
-        </size>
-       </property>
-       <column>
-        <property name="text">
-         <string>Информация о преобразованиях</string>
-        </property>
-       </column>
-       <item>
-        <property name="text">
-         <string>Частота</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Не лезь сюда</string>
-         </property>
-        </item>
-       </item>
-       <item>
-        <property name="text">
-         <string>Что ты хочешь узнать еще, разверни  частоту</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="add_pattern">
-       <property name="text">
-        <string>add pattern</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
   <action name="action_open">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/open.png</normaloff>:/tools/image/open.png</iconset>
    </property>
    <property name="text">
@@ -194,7 +267,7 @@
   </action>
   <action name="action_save">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/save.png</normaloff>:/tools/image/save.png</iconset>
    </property>
    <property name="text">
@@ -203,7 +276,7 @@
   </action>
   <action name="actionSave_as">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/save.png</normaloff>:/tools/image/save.png</iconset>
    </property>
    <property name="text">
@@ -212,7 +285,7 @@
   </action>
   <action name="action_print">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/print.png</normaloff>:/tools/image/print.png</iconset>
    </property>
    <property name="text">
@@ -221,7 +294,7 @@
   </action>
   <action name="action_settings">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/settings.png</normaloff>:/tools/image/settings.png</iconset>
    </property>
    <property name="text">
@@ -230,7 +303,7 @@
   </action>
   <action name="action_next">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/next.png</normaloff>:/tools/image/next.png</iconset>
    </property>
    <property name="text">
@@ -239,7 +312,7 @@
   </action>
   <action name="action_back">
    <property name="icon">
-    <iconset>
+    <iconset resource="ToolsBar.qrc">
      <normaloff>:/tools/image/back.png</normaloff>:/tools/image/back.png</iconset>
    </property>
    <property name="text">
@@ -261,6 +334,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="ToolsBar.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include <iostream>
 #include "generator.h"
+#include <windows.h>
 using namespace std;
 
 
@@ -10,12 +11,10 @@ using namespace std;
 
 int main()
 {
-    string s = "/home/ilay_kar/Документы/untitled7/AKIP0001.csv";
+    string s = "C://c++//AKIP0001.csv";
+    string s2;
     GENERATOR a(s);
     a.produce();
-    //a.scan();
-    //a.amplitude(0.0009);
-    //a.graph_multiplication(4);
-    //a.printfile();
+    std::cout << " " << s2 <<"\n";
     return 0;
 }

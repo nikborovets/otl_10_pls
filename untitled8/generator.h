@@ -18,18 +18,21 @@ class GENERATOR
     QString y_head;
     std::string path_file;
     std::string path_pattern;
-    void printfile();
-    void c_function(std::string &path, QVector<double> &params);
+
     void amplitude(double max_val , double min_val);
-    void graph_multiplication(double k);
     void amplitude(double max_val);
+    void c_function(std::string &path, QVector<double> &params);
+    void graph_multiplication(double k);
+
     void derivative();
     void scan();
+    void printfile();
 public:
     GENERATOR(std::string &s, std::string &s1);
     GENERATOR(std::string &s);
-    void produce();
 
+    void produce();
+    void change_path_file(std::string &path);
 };
 
 
