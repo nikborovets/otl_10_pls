@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-    string s = "C://c++//AKIP0001.csv";
+    string s = "C://c++//AKIP0002.csv";
     string s2;
     GENERATOR a(s);
     a.produce();
