@@ -1,4 +1,5 @@
 #include "generator.h"
+#include "qdebug.h"
 
 GENERATOR::GENERATOR(std::string &s,std::string &s1)
 {
@@ -24,12 +25,17 @@ void GENERATOR::scan()
         {
             if (line[j]==',')
             {
-                this->path_file = line.substr(0,j);
-                this->path_pattern = line.substr(j+1,line.size()-j);
+                a = line.substr(0,j);
+                b = line.substr(j+1,line.size()-j);
+                x_head = QString::fromStdString(a);
+                y_head = QString::fromStdString(b);
+                break;
             }
         }
-        std::getline(in1, line);
-        for(int l =0;l<1000;l++)
+
+
+        int i = 0;
+        while(i<20000)
         {
             std::getline(in1, line);
             for(int j =0;j<line.size();j++)
@@ -42,7 +48,9 @@ void GENERATOR::scan()
             }
             this->x.push_back(std::stod(a));
             this->y.push_back(std::stod(b));
-        }
+            i++;
+         }
+
      }
     in1.close();
 }
@@ -55,6 +63,7 @@ void GENERATOR::amplitude(double max_val ,double min_val)
     {
         if (not((abs(y[j]) <= max_val) and (abs(y[j]) >= min_val)))
         {
+            qDebug()<<i;
             y.remove(j);
             x.remove(j);
             j--;
@@ -87,12 +96,16 @@ void GENERATOR::graph_multiplication(double k)
 void GENERATOR::printfile()
 {
     std::ofstream out;
-    out.open("graph.txt");
+    out.open("C://c++//AKIP0001.csv");
     if (out.is_open())
     {
+        qDebug()<<"QWQQWQW";
+        out << x_head.toStdString() << " " << y_head.toStdString() << '\n';
         for(long i =0; i < x.size(); i++)
-                out << x[i] << " " << y[i] << '\n';
-        out << x.size() << '\n';
+                {
+
+                    out << x[i] << "," << y[i] << '\n';
+                }
     }
     out.close();
 };
@@ -113,9 +126,11 @@ void GENERATOR::produce()
     {
         this->scan();
     }
-    if (not(  this->path_pattern.size() == 0))
+    if (true
+        //    not(  this->path_pattern.size() == 0)
+       )
     {
-        this->amplitude(0.0009);
+        //this->amplitude(0.0009);
         this->graph_multiplication(4);
     }
 

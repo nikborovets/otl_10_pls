@@ -67,11 +67,6 @@ void MainWindow::on_push_button_clicked()
                 file_name = dialog.selectedFiles().first();
                 qDebug() << "Выбранный файл: " << file_name;
         }
-
-        //QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
-        //str += "/untitled8";
-        //const int buffer_size = str.size() + 1;
-        //char *path = shish->get_path();
         char* path = new char [file_name.size()];
         strcpy(path, file_name.toUtf8().constData());
 
