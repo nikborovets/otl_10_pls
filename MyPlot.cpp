@@ -64,13 +64,9 @@ GraphWidget::GraphWidget(QWidget* parent)
     layout->addWidget(button);
 
 
-<<<<<<< HEAD
     // Создаем график
-=======
     setFixedSize(1080, 1080);
 
-
->>>>>>> e54d23637d74dbebb61d295f78d3e789c5fc926e
     QCPGraph* graph = m_plot->addGraph();
 
     scan(fpath, this->x, this->y);

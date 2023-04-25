@@ -84,16 +84,29 @@ void MainWindow::on_push_button_clicked()
 }
 
 
-void MainWindow::on_set_button_clicked()
+/*void MainWindow::on_set_button_clicked()
 {
     MoveItem* item = new MoveItem();
     item->setPos(random_between(100, 200), random_between(100, 200));
     scene->addItem(item);
-}
+}*/
 
 
-void MainWindow::on_save_button_clicked()
+void MainWindow::on_set_button_clicked()
 {
+    //MoveItem* item = new MoveItem();
+    //item->setPos(random_between(100, 200), random_between(100, 200));
+    //scene->addItem(item);
+    QTreeWidgetItem* current_item = ui->filters_information->currentItem();
+    if (!current_item)
+        return;
 
+    QColor color = current_item->data(0, Qt::UserRole).value<QColor>();
+    MoveItem* color_item = new MoveItem();
+    color_item->setColor(color);
+    scene->addItem(color_item);
+
+    //connect(ui->filters_information, &QTreeWidget::itemSelectionChanged, this, &MainWindow::on_filters_information_currentItemChanged);
+    //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
 }
 

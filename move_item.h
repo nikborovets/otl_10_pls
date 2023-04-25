@@ -9,6 +9,7 @@
 #include <QCursor>
 #include <QApplication>
 #include <QWidget>
+#include <QColor>
 
 
 class MoveItem : public QObject, public QGraphicsItem
@@ -18,6 +19,9 @@ public:
     MoveItem(QObject* parent = 0);
     MoveItem(QWidget* parentWidget, QGraphicsItem* parent);
     ~MoveItem();
+
+    void setColor(QColor color);
+    const QColor& getColor() const;
 
 
 private:
@@ -33,6 +37,8 @@ private:
 private:
     QWidget* m_parentWidget;
     QPointF m_shiftMouseCoords;
+
+    QColor m_color;
 };
 
 #endif // MOVE_ITEM_H

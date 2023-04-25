@@ -25,6 +25,17 @@ QRectF MoveItem::boundingRect() const
     return QRectF (-30, -30, 60, 60);
 }
 
+void MoveItem::setColor(QColor color)
+{
+    m_color = color;
+    update(); // перерисовываем виджет
+}
+
+const QColor& MoveItem::getColor() const
+{
+        return m_color;
+}
+
 void MoveItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     painter->setPen(Qt::black);

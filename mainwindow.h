@@ -39,6 +39,7 @@ private slots:
 
     void on_set_button_clicked();
 
+
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;

@@ -1,0 +1,13 @@
+release/DataBase.o
+release/main.o
+release/mainwindow.o
+release/move_item.o
+release/MyPlot.o
+release/MyWidget.o
+release/qcustomplot.o
+release/qrc_ToolsBar.o
+release/moc_DataBase.o
+release/moc_mainwindow.o
+release/moc_move_item.o
+release/moc_MyPlot.o
+release/moc_qcustomplot.o
