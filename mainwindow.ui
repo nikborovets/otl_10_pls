@@ -73,8 +73,14 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="0" column="0" alignment="Qt::AlignTop">
          <widget class="QTreeWidget" name="filters_information">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>206</height>
+           </size>
+          </property>
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
