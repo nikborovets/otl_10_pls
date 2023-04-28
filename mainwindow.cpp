@@ -93,17 +93,26 @@ void MainWindow::on_push_button_clicked()
 
 
 void MainWindow::on_set_button_clicked()
-{
+{ 
+    enum Color {
+        RED,
+        GREEN,
+        BLUE,
+        YELLOW
+    };
+    QColor color_list[] = { QColor("#FF0000"), QColor("#00FF00"), QColor("#0000FF"), QColor("#FFFF00") };
+
+
     //MoveItem* item = new MoveItem();
     //item->setPos(random_between(100, 200), random_between(100, 200));
     //scene->addItem(item);
     QTreeWidgetItem* current_item = ui->filters_information->currentItem();
     if (!current_item)
         return;
-
-    QColor color = current_item->data(0, Qt::UserRole).value<QColor>();
+    int color_number = ui->filters_information->currentIndex().row();
+    QColor my_color = color_list[color_number];
     MoveItem* color_item = new MoveItem();
-    color_item->setColor(color);
+    color_item->setColor(my_color);
     scene->addItem(color_item);
 
     //connect(ui->filters_information, &QTreeWidget::itemSelectionChanged, this, &MainWindow::on_filters_information_currentItemChanged);

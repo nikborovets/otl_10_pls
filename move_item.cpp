@@ -39,7 +39,7 @@ const QColor& MoveItem::getColor() const
 void MoveItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     painter->setPen(Qt::black);
-    painter->setBrush(Qt::gray);
+    painter->setBrush(m_color);
     painter->drawRect(-30,-30,60,60);
     Q_UNUSED(option);
     Q_UNUSED(widget);
