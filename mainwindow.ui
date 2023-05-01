@@ -20,48 +20,43 @@
    <layout class="QGridLayout" name="gridLayout_5">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0" colspan="2">
-       <widget class="QGroupBox" name="groupBox">
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0" colspan="4">
-            <widget class="QGraphicsView" name="graphics_view"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="copy_button">
-             <property name="text">
-              <string>Копия</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="save_button">
-             <property name="text">
-              <string>Сохранить</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="delete_button">
-             <property name="text">
-              <string>Удалитб</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="set_button">
-             <property name="text">
-              <string>Вставить</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="calculate">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>90</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Calculate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="clear">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>90</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTreeWidget" name="patterns">
+        <column>
+         <property name="text">
+          <string>Шаблоны</string>
+         </property>
+        </column>
        </widget>
       </item>
       <item row="0" column="2" rowspan="2">
@@ -73,7 +68,16 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0" alignment="Qt::AlignTop">
+        <item row="1" column="0">
+         <widget class="QTreeWidget" name="filters">
+          <column>
+           <property name="text">
+            <string>Выбранный фильтр</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="0" column="0">
          <widget class="QTreeWidget" name="filters_information">
           <property name="maximumSize">
            <size>
@@ -134,54 +138,64 @@
           </item>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QTreeWidget" name="filters">
-          <column>
-           <property name="text">
-            <string>Выбранный фильтр</string>
+       </layout>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="2" column="2">
+            <widget class="QPushButton" name="set_button">
+             <property name="text">
+              <string>Вставить</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QPushButton" name="save_button">
+             <property name="text">
+              <string>Сохранить</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="delete_button">
+             <property name="text">
+              <string>Удалитб</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="copy_button">
+             <property name="text">
+              <string>Копия</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QGraphicsView" name="graphics_view"/>
+           </item>
+           <item row="1" column="0" colspan="4">
+            <widget class="QSlider" name="horizontalSlider">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSlider" name="verticalSlider">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="calculate">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>90</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Calculate</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="clear">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>90</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Clear</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="1">
-       <widget class="QTreeWidget" name="patterns">
-        <column>
-         <property name="text">
-          <string>Шаблоны</string>
-         </property>
-        </column>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>

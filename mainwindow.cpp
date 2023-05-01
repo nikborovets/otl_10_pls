@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget* parent)
 {
     shish->setValue("Path", "\0");
     ui->setupUi(this);
+
+    connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
 
     db = new DataBase();
@@ -22,11 +24,19 @@ MainWindow::MainWindow(QWidget* parent)
     ui->graphics_view->setScene(scene); //  Устанавливаем графическую сцену в graphics_view
     scene->setItemIndexMethod(QGraphicsScene::NoIndex); // настраиваем индексацию элементов
     scene->setSceneRect(0,0,500,500); // Устанавливаем размер сцены
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::paint_filters(const QString& value) {
+    QLabel *label = new QLabel(value, this);
+    QLineEdit *edit = new QLineEdit(this);
+    QTreeWidgetItem *tree_item = new QTreeWidgetItem(ui->filters);
+    ui->filters->setItemWidget(tree_item, 0, label);
 }
 
 void MainWindow::on_action_open_triggered()
@@ -84,14 +94,6 @@ void MainWindow::on_push_button_clicked()
 }
 
 
-/*void MainWindow::on_set_button_clicked()
-{
-    MoveItem* item = new MoveItem();
-    item->setPos(random_between(100, 200), random_between(100, 200));
-    scene->addItem(item);
-}*/
-
-
 void MainWindow::on_set_button_clicked()
 { 
     enum Color {
@@ -103,9 +105,6 @@ void MainWindow::on_set_button_clicked()
     QColor color_list[] = { QColor("#FF0000"), QColor("#00FF00"), QColor("#0000FF"), QColor("#FFFF00") };
 
 
-    //MoveItem* item = new MoveItem();
-    //item->setPos(random_between(100, 200), random_between(100, 200));
-    //scene->addItem(item);
     QTreeWidgetItem* current_item = ui->filters_information->currentItem();
     if (!current_item)
         return;

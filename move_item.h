@@ -33,6 +33,8 @@ private:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
     void mouseDoubleCLickEvent(QGraphicsSceneMouseEvent* event);
 
+signals:
+    void selectionChanged(const QString& value);
 
 private:
     QWidget* m_parentWidget;

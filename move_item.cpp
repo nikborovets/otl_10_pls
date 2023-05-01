@@ -4,14 +4,14 @@
 MoveItem::MoveItem(QObject* parent) :
     QObject(parent), QGraphicsItem()
 {
-    setFlag(ItemIsSelectable);
+    setFlags(ItemIsSelectable | ItemIsMovable);
 }
 
 MoveItem::MoveItem(QWidget* parentWidget, QGraphicsItem* parent) :
     QGraphicsItem(parent),
     m_parentWidget(parentWidget)
 {
-    setFlag(ItemIsSelectable);
+    setFlags(ItemIsSelectable | ItemIsMovable);
 }
 
 
@@ -58,11 +58,21 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton) {
-        MyWidget *widget = new MyWidget();
-        widget->setWindowTitle("My Widget");
-        widget->resize(200, 200);
-        widget->show();
+        emit selectionChanged("Что-то");
+
+
+        //this->setStyleSheet("background-color: red:hover");
+
+
+        //connect(this, &MoveItem::clicked, this, &MainWindow::paint_filters);
+
+
+        //MyWidget *widget = new MyWidget();
+        //widget->setWindowTitle("My Widget");
+        //widget->resize(200, 200);
+        //widget->show();
     }
+
 
 
     if (QApplication::mouseButtons() == Qt::RightButton)
@@ -70,6 +80,8 @@ void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
         this->deleteLater();
     }
 
+    emit selectionChanged("Что-то");
+    QGraphicsItem::mousePressEvent(event);
 
     /* При нажатии мышью на графический элемент
      * заменяем курсор на руку, которая держит этот элемента

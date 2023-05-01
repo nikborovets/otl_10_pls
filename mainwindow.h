@@ -30,6 +30,9 @@ public:
     ~MainWindow();
 
 private slots:
+    void paint_filters(const QString& value);
+
+private slots:
     void on_action_open_triggered();
     void on_action_remove_triggered();
 
@@ -40,9 +43,13 @@ private slots:
     void on_set_button_clicked();
 
 
+
+
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
+
+    MoveItem* my_item;
 
     QSettings* shish;
     GraphWidget* plot;
