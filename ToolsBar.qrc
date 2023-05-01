@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/tools">
+        <file>image/back.png</file>
+        <file>image/remove.png</file>
+        <file>image/index.png</file>
+        <file>image/next.png</file>
+        <file>image/open.png</file>
+        <file>image/picture.png</file>
+        <file>image/print.png</file>
+        <file>image/save.png</file>
+        <file>image/settings.png</file>
+    </qresource>
+</RCC>
