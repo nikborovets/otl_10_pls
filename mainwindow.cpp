@@ -5,6 +5,7 @@
 #include <QDir>
 #include <iostream>
 
+#include <QTcpSocket>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
@@ -14,7 +15,7 @@ MainWindow::MainWindow(QWidget* parent)
     shish->setValue("Path", "\0");
     ui->setupUi(this);
 
-    connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
+    //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
 
     db = new DataBase();
@@ -25,6 +26,10 @@ MainWindow::MainWindow(QWidget* parent)
     scene->setItemIndexMethod(QGraphicsScene::NoIndex); // настраиваем индексацию элементов
     scene->setSceneRect(0,0,500,500); // Устанавливаем размер сцены
 
+    socket = new QTcpSocket(this);
+    connect(socket,&QTcpSocket::readyRead,this,&MainWindow::slotReadyRead);
+    connect(socket,&QTcpSocket::disconnected,socket,&QTcpSocket::deleteLater);
+    nextBlockSize  = 0;
 }
 
 MainWindow::~MainWindow()
@@ -118,3 +123,72 @@ void MainWindow::on_set_button_clicked()
     //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
 }
 
+
+void MainWindow::on_calculate_clicked()
+{
+    //qDebug() << socket-> isValid();
+    socket->connectToHost("127.0.0.1",3230);
+
+    QString path_file = "C:\\c++\\AKIP0002.csv";
+    QString pattern_path = "C:\\c++\\AKIP0001.csv";
+    QString result_path = "C:\\c++\\AKIP0001.csv";
+
+    path_file += "$";
+    path_file += pattern_path;
+    path_file += "$";
+    path_file += result_path;
+    SendToServer(path_file);
+}
+
+void MainWindow::SendToServer(QString str)
+{
+    Data.clear();
+    QDataStream out(&Data,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_6_2);
+    out<< quint16(0)<<str;
+    out.device()->seek(0);
+    out<<quint16(Data.size()-sizeof(quint16));
+    socket->write(Data);
+}
+
+void MainWindow::slotReadyRead()
+{
+    QDataStream in(socket);
+    in.setVersion(QDataStream::Qt_6_2);
+    if(in.status() == QDataStream::Ok )
+    {
+
+        for(;;)
+        {
+            if(nextBlockSize == 0)
+            {
+                if(socket->bytesAvailable() < nextBlockSize)
+                    break;
+
+                in >> nextBlockSize;
+            }
+            if (socket->bytesAvailable() < nextBlockSize)
+            {
+                break;
+            }
+
+            QString str;
+            in >>str;
+            nextBlockSize = 0;
+            if (str == "complete")
+            {
+                GraphWidget* plot = new GraphWidget(this);
+                plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
+                plot->setWindowTitle("График");
+                plot->show();
+            }
+            qDebug() << str;
+            break;
+        }
+
+    }
+    else
+    {
+       qDebug() << "read error";
+    }
+}

@@ -11,7 +11,7 @@
 #include <QSqlTableModel>
 #include <DataBase.h>
 
-
+#include <QTcpSocket>
 
 #include "move_item.h"
 #include "MyPlot.h"
@@ -45,6 +45,8 @@ private slots:
 
 
 
+    void on_calculate_clicked();
+
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
@@ -56,6 +58,16 @@ private:
 
     DataBase* db;
     QSqlTableModel* modelDevice;
+
+//  client code
+
+    QTcpSocket *socket;
+    QByteArray Data;
+    void SendToServer(QString str);
+    quint16 nextBlockSize;
+public slots:
+    void slotReadyRead();
+//
 };
 
 #endif // MAINWINDOW_H

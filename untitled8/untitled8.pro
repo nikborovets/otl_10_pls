@@ -1,5 +1,5 @@
 QT -= gui
-
+QT += core network core5compat
 CONFIG += c++11 console
 CONFIG -= app_bundle
 
@@ -16,11 +16,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         generator.cpp \
-        main.cpp
+        main.cpp \
+        server.cpp
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    generator.h
+    generator.h \
+    server.h

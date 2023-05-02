@@ -5,11 +5,21 @@ GENERATOR::GENERATOR(std::string &s,std::string &s1)
 {
     this->path_file = s;
     this->path_pattern = s1;
+    this->path_result = "";
 }
 
 GENERATOR::GENERATOR(std::string &s)
 {
     this->path_file = s;
+    this->path_pattern = "";
+    this->path_result = "";
+}
+
+GENERATOR::GENERATOR()
+{
+    this->path_file = "";
+    this->path_pattern = "";
+    this->path_result = "";
 }
 
 void GENERATOR::scan()
@@ -21,9 +31,9 @@ void GENERATOR::scan()
         std::getline(in1, line);
         std::string a;
         std::string b;
-        for(int j =0;j<line.size();j++)
+        for(int j = 0;j < line.size();j++)
         {
-            if (line[j]==',')
+            if (line[j] == ',')
             {
                 a = line.substr(0,j);
                 b = line.substr(j+1,line.size()-j);
@@ -96,10 +106,9 @@ void GENERATOR::graph_multiplication(double k)
 void GENERATOR::printfile()
 {
     std::ofstream out;
-    out.open("C://c++//AKIP0001.csv");
+    out.open(this->path_result);
     if (out.is_open())
     {
-        qDebug()<<"QWQQWQW";
         out << x_head.toStdString() << " " << y_head.toStdString() << '\n';
         for(long i =0; i < x.size(); i++)
                 {
@@ -130,15 +139,48 @@ void GENERATOR::produce()
         //    not(  this->path_pattern.size() == 0)
        )
     {
-        //this->amplitude(0.0009);
-        this->graph_multiplication(4);
+        this->amplitude(0.5,0.0004);
+        this->graph_multiplication(10);
     }
 
     this->printfile();
 };
+
+void GENERATOR::clear()
+{
+    this->path_file = "";
+    this->path_pattern = "";
+    this->path_result = "";
+}
+
+bool GENERATOR::ready()
+{
+    if ( (path_file != "") and (path_pattern != "") and (path_result != "") )
+        return true;
+    return false;
+}
+
+void GENERATOR::fill(QString str)
+{
+    QStringList l = str.split("$");
+
+    path_file = l[0].toStdString();
+    path_pattern = l[1].toStdString();
+    path_result = l[2].toStdString();
+    return;
+}
 
 void GENERATOR::change_path_file(std::string &path)
 {
     this->path_file = path;
 }
 
+void GENERATOR::change_path_pattern(std::string &path)
+{
+    this->path_pattern = path;
+}
+
+void GENERATOR::change_path_result(std::string &path)
+{
+    this->path_result = path;
+}

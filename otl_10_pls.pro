@@ -1,6 +1,6 @@
 QT       += core gui
 QT += printsupport
-QT       += core
+QT       += core network
 QT       += gui
 QT       += sql
 
