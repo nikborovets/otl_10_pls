@@ -149,7 +149,7 @@ void MainWindow::on_set_button_clicked()
     }
 
     scene->addItem(filter_item);
-
+    connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //connect(ui->filters_information, &QTreeWidget::itemSelectionChanged, this, &MainWindow::on_filters_information_currentItemChanged);
     //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
 }
