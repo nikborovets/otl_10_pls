@@ -10,6 +10,7 @@
 #include <QApplication>
 #include <QWidget>
 #include <QColor>
+#include <QVector>
 
 
 class MoveItem : public QObject, public QGraphicsItem
@@ -40,7 +41,9 @@ private:
     QWidget* m_parentWidget;
     QPointF m_shiftMouseCoords;
 
+
     QColor m_color;
+    QString m_name;
 };
 
 #endif // MOVE_ITEM_H

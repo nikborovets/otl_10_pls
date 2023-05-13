@@ -51,13 +51,15 @@ private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
 
-    MoveItem* my_item;
+    //MoveItem* my_item;
 
     QSettings* shish;
     GraphWidget* plot;
 
     DataBase* db;
     QSqlTableModel* modelDevice;
+
+    QVector<MoveItem*> item_list;
 
 //  client code
 
