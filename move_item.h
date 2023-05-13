@@ -36,7 +36,7 @@ private:
 
 signals:
     void selectionChanged(const QString& value);
-
+    void itemMoved();
 private:
     QWidget* m_parentWidget;
     QPointF m_shiftMouseCoords;

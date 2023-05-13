@@ -53,12 +53,13 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
      * в координатную систему графической сцены
      * */
     this->setPos(mapToScene(event->pos() + m_shiftMouseCoords));
+    emit itemMoved();
 }
 
 void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton) {
-        emit selectionChanged("Что-то");
+        //emit selectionChanged("Что-то");
 
 
         //this->setStyleSheet("background-color: red:hover");
@@ -77,10 +78,13 @@ void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
     if (QApplication::mouseButtons() == Qt::RightButton)
     {
+        emit selectionChanged("Что-то");
+    }
+    if (QApplication::mouseButtons() == Qt::MiddleButton)
+    {
         this->deleteLater();
     }
 
-    emit selectionChanged("Что-то");
     QGraphicsItem::mousePressEvent(event);
 
     /* При нажатии мышью на графический элемент

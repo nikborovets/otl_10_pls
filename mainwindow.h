@@ -42,8 +42,7 @@ private slots:
 
     void on_set_button_clicked();
 
-
-
+    void ReDrawLines();
 
     void on_calculate_clicked();
 
@@ -60,7 +59,7 @@ private:
     QSqlTableModel* modelDevice;
 
     QVector<MoveItem*> item_list;
-
+    QVector<QGraphicsLineItem*> line_list;
 //  client code
 
     QTcpSocket *socket;
