@@ -41,18 +41,19 @@ public:
     QAction *action_remove;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
-    QTreeWidget *patterns;
-    QSpacerItem *horizontalSpacer;
-    QTreeWidget *filters;
-    QGraphicsView *graphics_view;
-    QPushButton *calculate;
-    QTreeWidget *filters_information;
-    QPushButton *add_pattern_2;
-    QPushButton *delete_button;
-    QPushButton *set_button;
     QPushButton *copy_button;
-    QPushButton *save_button;
+    QPushButton *delete_button;
     QPushButton *clear;
+    QSpacerItem *horizontalSpacer;
+    QGraphicsView *graphics_view;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *set_button;
+    QPushButton *save_button;
+    QTreeWidget *filters_information;
+    QPushButton *calculate;
+    QTreeWidget *patterns;
+    QPushButton *add_pattern_2;
+    QTreeWidget *filters;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -67,7 +68,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1033, 674);
+        MainWindow->resize(1055, 631);
         action_open = new QAction(MainWindow);
         action_open->setObjectName("action_open");
         QIcon icon;
@@ -113,30 +114,44 @@ public:
         centralwidget->setEnabled(true);
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName("gridLayout");
-        patterns = new QTreeWidget(centralwidget);
-        patterns->setObjectName("patterns");
+        copy_button = new QPushButton(centralwidget);
+        copy_button->setObjectName("copy_button");
 
-        gridLayout->addWidget(patterns, 3, 1, 2, 1);
+        gridLayout->addWidget(copy_button, 2, 0, 1, 1);
+
+        delete_button = new QPushButton(centralwidget);
+        delete_button->setObjectName("delete_button");
+
+        gridLayout->addWidget(delete_button, 2, 1, 1, 1);
+
+        clear = new QPushButton(centralwidget);
+        clear->setObjectName("clear");
+        clear->setMinimumSize(QSize(0, 90));
+
+        gridLayout->addWidget(clear, 5, 0, 1, 1);
 
         horizontalSpacer = new QSpacerItem(764, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addItem(horizontalSpacer, 0, 0, 1, 4);
-
-        filters = new QTreeWidget(centralwidget);
-        filters->setObjectName("filters");
-
-        gridLayout->addWidget(filters, 2, 4, 1, 1);
+        gridLayout->addItem(horizontalSpacer, 0, 0, 1, 5);
 
         graphics_view = new QGraphicsView(centralwidget);
         graphics_view->setObjectName("graphics_view");
 
-        gridLayout->addWidget(graphics_view, 1, 0, 1, 4);
+        gridLayout->addWidget(graphics_view, 1, 0, 1, 5, Qt::AlignTop);
 
-        calculate = new QPushButton(centralwidget);
-        calculate->setObjectName("calculate");
-        calculate->setMinimumSize(QSize(0, 90));
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addWidget(calculate, 3, 0, 1, 1);
+        gridLayout->addItem(horizontalSpacer_2, 2, 4, 1, 1);
+
+        set_button = new QPushButton(centralwidget);
+        set_button->setObjectName("set_button");
+
+        gridLayout->addWidget(set_button, 2, 2, 1, 1);
+
+        save_button = new QPushButton(centralwidget);
+        save_button->setObjectName("save_button");
+
+        gridLayout->addWidget(save_button, 2, 3, 1, 1);
 
         filters_information = new QTreeWidget(centralwidget);
         QFont font;
@@ -154,43 +169,33 @@ public:
         filters_information->setLayoutDirection(Qt::LeftToRight);
         filters_information->setAutoFillBackground(false);
 
-        gridLayout->addWidget(filters_information, 1, 4, 1, 1);
+        gridLayout->addWidget(filters_information, 0, 5, 2, 1);
+
+        calculate = new QPushButton(centralwidget);
+        calculate->setObjectName("calculate");
+        calculate->setMinimumSize(QSize(0, 90));
+
+        gridLayout->addWidget(calculate, 3, 0, 2, 1);
+
+        patterns = new QTreeWidget(centralwidget);
+        patterns->setObjectName("patterns");
+
+        gridLayout->addWidget(patterns, 3, 1, 3, 4);
 
         add_pattern_2 = new QPushButton(centralwidget);
         add_pattern_2->setObjectName("add_pattern_2");
 
-        gridLayout->addWidget(add_pattern_2, 3, 4, 1, 1);
+        gridLayout->addWidget(add_pattern_2, 5, 5, 1, 1);
 
-        delete_button = new QPushButton(centralwidget);
-        delete_button->setObjectName("delete_button");
+        filters = new QTreeWidget(centralwidget);
+        filters->setObjectName("filters");
 
-        gridLayout->addWidget(delete_button, 2, 1, 1, 1);
-
-        set_button = new QPushButton(centralwidget);
-        set_button->setObjectName("set_button");
-
-        gridLayout->addWidget(set_button, 2, 2, 1, 1);
-
-        copy_button = new QPushButton(centralwidget);
-        copy_button->setObjectName("copy_button");
-
-        gridLayout->addWidget(copy_button, 2, 0, 1, 1);
-
-        save_button = new QPushButton(centralwidget);
-        save_button->setObjectName("save_button");
-
-        gridLayout->addWidget(save_button, 2, 3, 1, 1);
-
-        clear = new QPushButton(centralwidget);
-        clear->setObjectName("clear");
-        clear->setMinimumSize(QSize(0, 90));
-
-        gridLayout->addWidget(clear, 4, 0, 1, 1);
+        gridLayout->addWidget(filters, 2, 5, 2, 1);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1033, 21));
+        menubar->setGeometry(QRect(0, 0, 1055, 21));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
@@ -251,32 +256,32 @@ public:
         action_back->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         actionGuide->setText(QCoreApplication::translate("MainWindow", "Guide", nullptr));
         action_remove->setText(QCoreApplication::translate("MainWindow", "Remove", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem = patterns->headerItem();
-        ___qtreewidgetitem->setText(0, QCoreApplication::translate("MainWindow", "\320\250\320\260\320\261\320\273\320\276\320\275\321\213", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem1 = filters->headerItem();
-        ___qtreewidgetitem1->setText(0, QCoreApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\320\275\320\275\321\213\320\271 \321\204\320\270\320\273\321\214\321\202\321\200", nullptr));
-        calculate->setText(QCoreApplication::translate("MainWindow", "Calculate", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem2 = filters_information->headerItem();
-        ___qtreewidgetitem2->setText(0, QCoreApplication::translate("MainWindow", "\320\230\320\275\321\204\320\276\321\200\320\274\320\260\321\206\320\270\321\217 \320\276 \320\277\321\200\320\265\320\276\320\261\321\200\320\260\320\267\320\276\320\262\320\260\320\275\320\270\321\217\321\205", nullptr));
+        copy_button->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\277\320\270\321\217", nullptr));
+        delete_button->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\320\261", nullptr));
+        clear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
+        set_button->setText(QCoreApplication::translate("MainWindow", "\320\222\321\201\321\202\320\260\320\262\320\270\321\202\321\214", nullptr));
+        save_button->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem = filters_information->headerItem();
+        ___qtreewidgetitem->setText(0, QCoreApplication::translate("MainWindow", "\320\230\320\275\321\204\320\276\321\200\320\274\320\260\321\206\320\270\321\217 \320\276 \320\277\321\200\320\265\320\276\320\261\321\200\320\260\320\267\320\276\320\262\320\260\320\275\320\270\321\217\321\205", nullptr));
 
         const bool __sortingEnabled = filters_information->isSortingEnabled();
         filters_information->setSortingEnabled(false);
-        QTreeWidgetItem *___qtreewidgetitem3 = filters_information->topLevelItem(0);
-        ___qtreewidgetitem3->setText(0, QCoreApplication::translate("MainWindow", "\320\236\320\263\321\200\320\260\320\275\320\270\321\207\320\265\320\275\320\270\320\265 \320\260\320\274\320\277\320\273\320\270\321\202\321\203\320\264\321\213", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem4 = filters_information->topLevelItem(1);
-        ___qtreewidgetitem4->setText(0, QCoreApplication::translate("MainWindow", "\320\241\321\202\321\217\320\275\321\203\321\202\321\214 \320\272 \320\276\321\201\320\270", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem5 = filters_information->topLevelItem(2);
-        ___qtreewidgetitem5->setText(0, QCoreApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 1", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem6 = filters_information->topLevelItem(3);
-        ___qtreewidgetitem6->setText(0, QCoreApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 2", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem1 = filters_information->topLevelItem(0);
+        ___qtreewidgetitem1->setText(0, QCoreApplication::translate("MainWindow", "\320\236\320\263\321\200\320\260\320\275\320\270\321\207\320\265\320\275\320\270\320\265 \320\260\320\274\320\277\320\273\320\270\321\202\321\203\320\264\321\213", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem2 = filters_information->topLevelItem(1);
+        ___qtreewidgetitem2->setText(0, QCoreApplication::translate("MainWindow", "\320\241\321\202\321\217\320\275\321\203\321\202\321\214 \320\272 \320\276\321\201\320\270", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem3 = filters_information->topLevelItem(2);
+        ___qtreewidgetitem3->setText(0, QCoreApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 1", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem4 = filters_information->topLevelItem(3);
+        ___qtreewidgetitem4->setText(0, QCoreApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 2", nullptr));
         filters_information->setSortingEnabled(__sortingEnabled);
 
+        calculate->setText(QCoreApplication::translate("MainWindow", "Calculate", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem5 = patterns->headerItem();
+        ___qtreewidgetitem5->setText(0, QCoreApplication::translate("MainWindow", "\320\250\320\260\320\261\320\273\320\276\320\275\321\213", nullptr));
         add_pattern_2->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
-        delete_button->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\320\261", nullptr));
-        set_button->setText(QCoreApplication::translate("MainWindow", "\320\222\321\201\321\202\320\260\320\262\320\270\321\202\321\214", nullptr));
-        copy_button->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\277\320\270\321\217", nullptr));
-        save_button->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
-        clear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem6 = filters->headerItem();
+        ___qtreewidgetitem6->setText(0, QCoreApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\320\275\320\275\321\213\320\271 \321\204\320\270\320\273\321\214\321\202\321\200", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         menuView->setTitle(QCoreApplication::translate("MainWindow", "View", nullptr));

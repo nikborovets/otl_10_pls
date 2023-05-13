@@ -151,7 +151,10 @@ void MainWindow::on_set_button_clicked()
 
     scene->addItem(filter_item);
     connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
+<<<<<<< HEAD
     connect(filter_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
+=======
+>>>>>>> bdb6b5cf8041efd837df05f0e0e89054fbf98748
     //connect(ui->filters_information, &QTreeWidget::itemSelectionChanged, this, &MainWindow::on_filters_information_currentItemChanged);
     //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
 }
