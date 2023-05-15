@@ -134,27 +134,11 @@ void MainWindow::on_set_button_clicked()
     filter_item->setColor(my_color);
     filter_item->setData(Qt::UserRole, filter_name[color_number]);
 
-    //Связывание линией
-    if (!scene->items().isEmpty())
-    {
-        QGraphicsItem* last_item = scene->items().last();
-        QGraphicsLineItem *connect_line = new QGraphicsLineItem(0, 0, 50, 50);
-        scene->addItem(connect_line);
-        connect_line->setZValue(-1);
-        filter_item->setZValue(0);
-        last_item->setZValue(0);
-        QPointF center_1 = filter_item->pos() + QPointF(filter_item->childrenBoundingRect().width() / 2.0, filter_item->childrenBoundingRect().height() / 2.0);
-        QPointF center_2 = last_item->pos() + QPointF(last_item->childrenBoundingRect().width() / 2.0, last_item->childrenBoundingRect().height() / 2.0);
-        connect_line->setLine(QLineF(center_1, center_2));
-        line_list.push_back(connect_line);
-    }
-
     scene->addItem(filter_item);
     connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
-<<<<<<< HEAD
+
     connect(filter_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
-=======
->>>>>>> bdb6b5cf8041efd837df05f0e0e89054fbf98748
+    ReDrawLines();
     //connect(ui->filters_information, &QTreeWidget::itemSelectionChanged, this, &MainWindow::on_filters_information_currentItemChanged);
     //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
 }
