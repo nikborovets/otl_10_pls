@@ -11,9 +11,7 @@
 
 class MyWidget : public QWidget {
 public:
-    MyWidget(QWidget *parent = 0);
-
-
+    MyWidget(QWidget* parent = 0);
 };
 
 

@@ -23,19 +23,19 @@ void scan(std::string path_file, QVector<double> &x, QVector<double> &y)
         std::string b;
         for(int j = 0; j < line.size(); j++)
         {
-            if (line[j]==',')
+            if (line[j] == ',')
                 path_file = line.substr(0, j);
         }
 
         while(std::getline(in1, line))
         {
             std::getline(in1, line);
-            for(int j =0;j<line.size();j++)
+            for(int j = 0; j < line.size(); j++)
             {
-                if (line[j]==',')
+                if (line[j] == ',')
                 {
-                    a = line.substr(0,j);
-                    b = line.substr(j+1,line.size()-j);
+                    a = line.substr(0, j);
+                    b = line.substr(j + 1, line.size() - j);
                 }
             }
             x.push_back(QString::fromStdString(a).toDouble());

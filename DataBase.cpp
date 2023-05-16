@@ -5,10 +5,12 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
+
 DataBase::~DataBase()
 {
 
 }
+
 
 /* Методы для подключения к базе данных
  * */
@@ -23,6 +25,7 @@ void DataBase::connectToDataBase()
         this->openDataBase();
     }
 }
+
 
 /* Методы восстановления базы данных
  * */
@@ -41,6 +44,7 @@ bool DataBase::restoreDataBase()
     return false;
 }
 
+
 /* Метод для открытия базы данных
  * */
 bool DataBase::openDataBase()
@@ -58,12 +62,14 @@ bool DataBase::openDataBase()
     }
 }
 
+
 /* Методы закрытия базы данных
  * */
 void DataBase::closeDataBase()
 {
     db.close();
 }
+
 
 /* Метод для создания таблицы устройств в базе данных
  * */
@@ -88,6 +94,7 @@ bool DataBase::createDeviceTable()
     }
     return false;
 }
+
 
 /* Метод для вставки записи в таблицу устройств
  * */

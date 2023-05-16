@@ -15,7 +15,9 @@
 
 class MoveItem : public QObject, public QGraphicsItem
 {
+
     Q_OBJECT
+
 public:
     MoveItem(QObject* parent = 0);
     MoveItem(QWidget* parentWidget, QGraphicsItem* parent);
@@ -23,7 +25,6 @@ public:
 
     void setColor(QColor color);
     const QColor& getColor() const;
-
 
 private:
     QRectF boundingRect() const;
@@ -37,10 +38,10 @@ private:
 signals:
     void selectionChanged(const QString& value);
     void itemMoved();
+
 private:
     QWidget* m_parentWidget;
     QPointF m_shiftMouseCoords;
-
 
     QColor m_color;
     QString m_name;

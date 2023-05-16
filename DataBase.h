@@ -21,7 +21,9 @@
 
 class DataBase : public QObject
 {
+
     Q_OBJECT
+
 public:
     explicit DataBase(QObject *parent = 0);
     ~DataBase();
@@ -33,7 +35,7 @@ public:
 
 private:
     // Сам объект базы данных, с которым будет производиться работа
-    QSqlDatabase    db;
+    QSqlDatabase db;
 
 private:
     /* Внутренние методы для работы с базой данных

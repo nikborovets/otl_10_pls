@@ -10,6 +10,7 @@
 #include <QGraphicsLineItem>
 #include <QLineF>
 
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
@@ -20,6 +21,12 @@ MainWindow::MainWindow(QWidget* parent)
 
     MoveItem* static_settings_item = new MoveItem();
     item_list.push_back(static_settings_item);
+    static_settings_item->setColor(Qt::gray);
+    static_settings_item->setData(Qt::UserRole, "settings");
+
+    //scene->addItem(static_settings_item);
+    connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
+
 
     //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
@@ -38,40 +45,58 @@ MainWindow::MainWindow(QWidget* parent)
     nextBlockSize  = 0;
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+
 void MainWindow::paint_filters(const QString& value) {
-    QLabel *label = new QLabel(value, this);
-    QLineEdit *edit = new QLineEdit(this);
-    QTreeWidgetItem *tree_item = new QTreeWidgetItem(ui->filters);
-    ui->filters->setItemWidget(tree_item, 0, label);
+    QWidget *widget = new QWidget();
+    QHBoxLayout *layout = new QHBoxLayout(widget);  // создаем горизонтальный QHBoxLayout
+    QLabel *label = new QLabel("Амплитуда:");
+    QLineEdit *lineEdit = new QLineEdit;
+    layout->addWidget(label);
+    layout->addWidget(lineEdit);
+
+
+    QListWidgetItem *newItem = new QListWidgetItem();
+    newItem->setSizeHint(widget->sizeHint());
+    //newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
+    ui->filters->addItem(newItem);
+    ui->filters->setItemWidget(newItem, widget);
     qDebug() << "Ура";
 }
+
+
+void MainWindow::settings_filter()
+{
+
+}
+
 
 void MainWindow::on_action_open_triggered()
 {
     QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
 }
 
+
 void MainWindow::on_action_remove_triggered()
 {
 
 }
+
 
 static int random_between(int low, int high)
 {
     return (rand() % ((high + 1) - low) + low);
 }
 
-void MainWindow::on_add_pattern_2_clicked()
+
+void MainWindow::on_save_filters_clicked()
 {
-    MoveItem* item = new MoveItem();
-    connect(item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
-    item->setPos(random_between(100, 200), random_between(100, 200));
-    scene->addItem(item);
+
 }
 
 
@@ -129,7 +154,7 @@ void MainWindow::on_set_button_clicked()
 
     MoveItem* filter_item = new MoveItem();
     item_list.push_back(filter_item);
-    qDebug() << item_list.size() << "\n";
+    //qDebug() << item_list.size() << "\n";
 
     filter_item->setColor(my_color);
     filter_item->setData(Qt::UserRole, filter_name[color_number]);
@@ -143,17 +168,18 @@ void MainWindow::on_set_button_clicked()
     //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
 }
 
+
 void MainWindow::ReDrawLines()
 {
-    for (int i = 0;i < line_list.size();i++)
+    for (int i = 0; i < line_list.size(); i++)
     {
         scene->removeItem(line_list[i]);
     }
     line_list.clear();
-    for (int i = 0;i < item_list.size() - 1;i++)
+    for (int i = 0; i < item_list.size() - 1; i++)
     {
         QPointF center_1 = item_list[i]->pos() + QPointF(item_list[i]->childrenBoundingRect().width() / 2.0, item_list[i]->childrenBoundingRect().height() / 2.0);
-        QPointF center_2 = item_list[i+1]->pos() + QPointF(item_list[i+1]->childrenBoundingRect().width() / 2.0, item_list[i+1]->childrenBoundingRect().height() / 2.0);
+        QPointF center_2 = item_list[i + 1]->pos() + QPointF(item_list[i + 1]->childrenBoundingRect().width() / 2.0, item_list[i + 1]->childrenBoundingRect().height() / 2.0);
         QGraphicsLineItem* connect_line = new QGraphicsLineItem(0, 0, 50, 50);
         scene->addItem(connect_line);
         connect_line->setZValue(-1);
@@ -161,6 +187,7 @@ void MainWindow::ReDrawLines()
         line_list.push_back(connect_line);
     }
 }
+
 
 void MainWindow::on_calculate_clicked()
 {
@@ -178,6 +205,7 @@ void MainWindow::on_calculate_clicked()
     SendToServer(path_file);
 }
 
+
 void MainWindow::SendToServer(QString str)
 {
     Data.clear();
@@ -189,13 +217,13 @@ void MainWindow::SendToServer(QString str)
     socket->write(Data);
 }
 
+
 void MainWindow::slotReadyRead()
 {
     QDataStream in(socket);
     in.setVersion(QDataStream::Qt_6_2);
     if(in.status() == QDataStream::Ok )
     {
-
         for(;;)
         {
             if(nextBlockSize == 0)
@@ -209,7 +237,6 @@ void MainWindow::slotReadyRead()
             {
                 break;
             }
-
             QString str;
             in >>str;
             nextBlockSize = 0;

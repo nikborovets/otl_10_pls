@@ -7,6 +7,7 @@ MoveItem::MoveItem(QObject* parent) :
     setFlags(ItemIsSelectable | ItemIsMovable);
 }
 
+
 MoveItem::MoveItem(QWidget* parentWidget, QGraphicsItem* parent) :
     QGraphicsItem(parent),
     m_parentWidget(parentWidget)
@@ -20,10 +21,12 @@ MoveItem::~MoveItem()
 
 }
 
+
 QRectF MoveItem::boundingRect() const
 {
     return QRectF (-30, -30, 60, 60);
 }
+
 
 void MoveItem::setColor(QColor color)
 {
@@ -31,10 +34,12 @@ void MoveItem::setColor(QColor color)
     update(); // перерисовываем виджет
 }
 
+
 const QColor& MoveItem::getColor() const
 {
         return m_color;
 }
+
 
 void MoveItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
@@ -44,6 +49,7 @@ void MoveItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, 
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
+
 
 void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
@@ -56,30 +62,15 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     emit itemMoved();
 }
 
+
 void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-    if (event->button() == Qt::LeftButton) {
-        //emit selectionChanged("Что-то");
-
-
-        //this->setStyleSheet("background-color: red:hover");
-
-
-        //connect(this, &MoveItem::clicked, this, &MainWindow::paint_filters);
-
-
-        //MyWidget *widget = new MyWidget();
-        //widget->setWindowTitle("My Widget");
-        //widget->resize(200, 200);
-        //widget->show();
-    }
-
-
 
     if (QApplication::mouseButtons() == Qt::RightButton)
     {
         emit selectionChanged("Что-то");
     }
+
     if (QApplication::mouseButtons() == Qt::MiddleButton)
     {
         this->deleteLater();
@@ -95,6 +86,7 @@ void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
     Q_UNUSED(event);
 }
 
+
 void MoveItem::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
     /* При отпускании мышью элемента
@@ -103,6 +95,7 @@ void MoveItem::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
     this->setCursor(QCursor(Qt::ArrowCursor));
     Q_UNUSED(event);
 }
+
 
 void MoveItem::mouseDoubleCLickEvent(QGraphicsSceneMouseEvent* event)
 {
