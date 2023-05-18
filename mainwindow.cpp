@@ -21,14 +21,12 @@ MainWindow::MainWindow(QWidget* parent)
 
     MoveItem* static_settings_item = new MoveItem();
     item_list.push_back(static_settings_item);
+    item_list_in_order.push_back(static_settings_item);
     static_settings_item->setColor(Qt::gray);
     static_settings_item->setData(Qt::UserRole, "settings");
 
     //scene->addItem(static_settings_item);
     connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
-
-
-
 
     //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
@@ -54,23 +52,39 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::paint_filters(const QString& value) {
-    QWidget *widget = new QWidget();
-    QHBoxLayout *layout = new QHBoxLayout(widget);  // создаем горизонтальный QHBoxLayout
-    QLabel *label = new QLabel("Амплитуда:");
-    QLineEdit *lineEdit = new QLineEdit;
-    layout->addWidget(label);
-    layout->addWidget(lineEdit);
+void MainWindow::on_action_open_triggered()
+{
+    QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
+}
 
 
-    QListWidgetItem *newItem = new QListWidgetItem();
-    newItem->setSizeHint(widget->sizeHint());
-    //newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
-    ui->filters->addItem(newItem);
-    ui->filters->setItemWidget(newItem, widget);
-    qDebug() << "Ура";
+void MainWindow::on_open_filters_clicked()
+{
+    open_settings();
+}
 
-    connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
+
+void MainWindow::on_close_filters_clicked()
+{
+    close_filter();
+}
+
+
+void MainWindow::on_calculate_clicked()
+{
+    calculate_pattern();
+}
+
+
+void MainWindow::on_set_button_clicked()
+{
+    add_pattern_on_scene();
+}
+
+
+void MainWindow::on_delete_button_clicked()
+{
+    delete_item();
 }
 
 
@@ -80,36 +94,15 @@ void MainWindow::settings_filter()
 }
 
 
-void MainWindow::on_action_open_triggered()
-{
-    QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
-}
-
-
-void MainWindow::on_action_remove_triggered()
-{
-
-}
-
-
-static int random_between(int low, int high)
-{
-    return (rand() % ((high + 1) - low) + low);
-}
-
-
 void MainWindow::on_save_filters_clicked()
 {
     QSettings settings("MyCompany", "MyApp");
     for (int i = 0; i < ui->filters->count(); i++)
     {
         QString myValue = settings.value("MyParameter", "").toString();
-
         qDebug() << myValue;
-
        // out << ui->filters->item(i)->text() << "\n";
     }
-
 }
 
 
@@ -145,9 +138,8 @@ void MainWindow::on_push_button_clicked()
 }
 
 
-void MainWindow::on_set_button_clicked()
+void MainWindow::add_pattern_on_scene()
 {
-
     enum Color {
         RED,
         GREEN,
@@ -174,14 +166,13 @@ void MainWindow::on_set_button_clicked()
     filter_item->setData(Qt::UserRole, filter_name[color_number]);
 
     scene->addItem(filter_item);
-    connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
+    //connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
 
 
     connect(filter_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
     ReDrawLines();
 
-    connect(filter_item, &MoveItem::itemSelected, this, &MainWindow::setSelectedItem); // связь с кнопкой удалить
-
+    connect(filter_item, &MoveItem::itemSelected, this, &MainWindow::set_selected_item); // связь с кнопкой удалить
 }
 
 
@@ -205,9 +196,8 @@ void MainWindow::ReDrawLines()
 }
 
 
-void MainWindow::on_calculate_clicked()
+void MainWindow::calculate_pattern()
 {
-
     //qDebug() << socket-> isValid();
     socket->connectToHost("127.0.0.1",3230);
 
@@ -290,15 +280,9 @@ void MainWindow::on_filters_itemChanged(QListWidgetItem *item)
 }
 
 
-void MainWindow::setSelectedItem(MoveItem *item)
+void MainWindow::set_selected_item(MoveItem *item)
 {
     this->m_selected_item = item;
-}
-
-
-void MainWindow::on_delete_button_clicked()
-{
-    delete_item();
 }
 
 
@@ -318,12 +302,6 @@ void MainWindow::delete_item()
        m_selected_item = nullptr;
     }
     ReDrawLines();
-}
-
-
-void MainWindow::on_open_filters_clicked()
-{
-    open_settings();
 }
 
 
@@ -352,7 +330,7 @@ void MainWindow::open_settings()
 }
 
 
-void MainWindow::on_close_filters_clicked()
+void MainWindow::close_filter()
 {
     // Получаем количество элементов в QListWidget
     int count = ui->filters->count();
