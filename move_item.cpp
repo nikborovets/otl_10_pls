@@ -65,6 +65,11 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 
 void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+    if (QApplication::mouseButtons() == Qt::LeftButton)
+    {
+        emit itemSelected(this);
+    }
+
 
     if (QApplication::mouseButtons() == Qt::RightButton)
     {

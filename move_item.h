@@ -38,6 +38,8 @@ private:
 signals:
     void selectionChanged(const QString& value);
     void itemMoved();
+    void itemSelected(MoveItem *item);
+
 
 private:
     QWidget* m_parentWidget;

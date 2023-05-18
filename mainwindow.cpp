@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget* parent)
     connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
 
 
+
+
     //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
 
@@ -67,6 +69,8 @@ void MainWindow::paint_filters(const QString& value) {
     ui->filters->addItem(newItem);
     ui->filters->setItemWidget(newItem, widget);
     qDebug() << "Ура";
+
+    connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
 }
 
 
@@ -96,6 +100,15 @@ static int random_between(int low, int high)
 
 void MainWindow::on_save_filters_clicked()
 {
+    QSettings settings("MyCompany", "MyApp");
+    for (int i = 0; i < ui->filters->count(); i++)
+    {
+        QString myValue = settings.value("MyParameter", "").toString();
+
+        qDebug() << myValue;
+
+       // out << ui->filters->item(i)->text() << "\n";
+    }
 
 }
 
@@ -162,10 +175,12 @@ void MainWindow::on_set_button_clicked()
     scene->addItem(filter_item);
     connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
 
+
     connect(filter_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
     ReDrawLines();
-    //connect(ui->filters_information, &QTreeWidget::itemSelectionChanged, this, &MainWindow::on_filters_information_currentItemChanged);
-    //connect(ui->set_button, &QPushButton::clicked, this, &MainWindow::on_set_button_clicked);
+
+    connect(filter_item, &MoveItem::itemSelected, this, &MainWindow::setSelectedItem); // связь с кнопкой удалить
+
 }
 
 
@@ -191,6 +206,7 @@ void MainWindow::ReDrawLines()
 
 void MainWindow::on_calculate_clicked()
 {
+
     //qDebug() << socket-> isValid();
     socket->connectToHost("127.0.0.1",3230);
 
@@ -257,3 +273,49 @@ void MainWindow::slotReadyRead()
        qDebug() << "read error";
     }
 }
+
+
+void MainWindow::on_filters_itemChanged(QListWidgetItem *item)
+{
+    QString itemText = item->text();
+
+    // Создать QSettings объект
+    QSettings settings("MyCompany", "MyApp");
+
+    // Сохранить itemText в качестве значения параметра
+    settings.setValue("MyParameter", itemText);
+
+    qDebug() << "Value entered: " << itemText;
+}
+
+
+void MainWindow::setSelectedItem(MoveItem *item)
+{
+    this->m_selected_item = item;
+}
+
+
+void MainWindow::on_delete_button_clicked()
+{
+    delete_item();
+}
+
+
+void MainWindow::delete_item()
+{
+    if (m_selected_item)
+    {
+       for (int i = 0; i < item_list.size(); ++i)
+       {
+            if (m_selected_item == item_list[i])
+            {
+                item_list.remove(i);
+                break;
+            }
+       }
+       m_selected_item->deleteLater();
+       m_selected_item = nullptr;
+    }
+    ReDrawLines();
+}
+
