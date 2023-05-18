@@ -24,6 +24,8 @@ public:
     ~MoveItem();
 
     void setColor(QColor color);
+    QString get_name();
+    void set_name(QString name);
     const QColor& getColor() const;
 
 private:
@@ -33,7 +35,6 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
-    void mouseDoubleCLickEvent(QGraphicsSceneMouseEvent* event);
 
 signals:
     void selectionChanged(const QString& value);

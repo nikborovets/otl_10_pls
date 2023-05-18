@@ -170,6 +170,7 @@ void MainWindow::on_set_button_clicked()
     //qDebug() << item_list.size() << "\n";
 
     filter_item->setColor(my_color);
+    filter_item->set_name(filter_name[color_number]);
     filter_item->setData(Qt::UserRole, filter_name[color_number]);
 
     scene->addItem(filter_item);
@@ -317,5 +318,33 @@ void MainWindow::delete_item()
        m_selected_item = nullptr;
     }
     ReDrawLines();
+}
+
+
+void MainWindow::on_open_filters_clicked()
+{
+    open_settings();
+}
+
+
+void MainWindow::open_settings()
+{
+    QWidget *widget = new QWidget();
+    QHBoxLayout *layout = new QHBoxLayout(widget);  // создаем горизонтальный QHBoxLayout
+    QLabel *label = new QLabel(m_selected_item->get_name());
+    qDebug() << m_selected_item->get_name();
+    QLineEdit *lineEdit = new QLineEdit;
+    layout->addWidget(label);
+    layout->addWidget(lineEdit);
+
+
+    QListWidgetItem *newItem = new QListWidgetItem();
+    newItem->setSizeHint(widget->sizeHint());
+    //newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
+    ui->filters->addItem(newItem);
+    ui->filters->setItemWidget(newItem, widget);
+    qDebug() << "Ура";
+
+    connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
 }
 

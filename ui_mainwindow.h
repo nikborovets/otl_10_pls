@@ -51,7 +51,7 @@ public:
     QPushButton *calculate;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *delete_button;
-    QPushButton *save_button;
+    QPushButton *open_filters;
     QGraphicsView *graphics_view;
     QTreeWidget *filters_information;
     QListWidget *filters;
@@ -160,10 +160,10 @@ public:
 
         gridLayout->addWidget(delete_button, 2, 1, 1, 1);
 
-        save_button = new QPushButton(centralwidget);
-        save_button->setObjectName("save_button");
+        open_filters = new QPushButton(centralwidget);
+        open_filters->setObjectName("open_filters");
 
-        gridLayout->addWidget(save_button, 2, 3, 1, 1);
+        gridLayout->addWidget(open_filters, 2, 3, 1, 1);
 
         graphics_view = new QGraphicsView(centralwidget);
         graphics_view->setObjectName("graphics_view");
@@ -264,8 +264,8 @@ public:
         copy_button->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\277\320\270\321\217", nullptr));
         clear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
         calculate->setText(QCoreApplication::translate("MainWindow", "Calculate", nullptr));
-        delete_button->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\320\261", nullptr));
-        save_button->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
+        delete_button->setText(QCoreApplication::translate("MainWindow", "\320\243\320\264\320\260\320\273\320\270\321\202\321\214", nullptr));
+        open_filters->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\270\321\202\321\214 \321\204\320\270\320\273\321\214\321\202\321\200", nullptr));
         QTreeWidgetItem *___qtreewidgetitem1 = filters_information->headerItem();
         ___qtreewidgetitem1->setText(0, QCoreApplication::translate("MainWindow", "\320\230\320\275\321\204\320\276\321\200\320\274\320\260\321\206\320\270\321\217 \320\276 \320\277\321\200\320\265\320\276\320\261\321\200\320\260\320\267\320\276\320\262\320\260\320\275\320\270\321\217\321\205", nullptr));
 

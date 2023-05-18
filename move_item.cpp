@@ -70,15 +70,9 @@ void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
         emit itemSelected(this);
     }
 
-
     if (QApplication::mouseButtons() == Qt::RightButton)
     {
         emit selectionChanged("Что-то");
-    }
-
-    if (QApplication::mouseButtons() == Qt::MiddleButton)
-    {
-        this->deleteLater();
     }
 
     QGraphicsItem::mousePressEvent(event);
@@ -102,7 +96,14 @@ void MoveItem::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 }
 
 
-void MoveItem::mouseDoubleCLickEvent(QGraphicsSceneMouseEvent* event)
+QString MoveItem::get_name()
 {
-    return;
+    return this->m_name;
 }
+
+
+void MoveItem::set_name(QString name)
+{
+    this->m_name = name;
+}
+

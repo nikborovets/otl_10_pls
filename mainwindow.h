@@ -52,6 +52,9 @@ private slots:
 
     void delete_item();
 
+    void on_open_filters_clicked();
+    void open_settings();
+
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
