@@ -55,6 +55,8 @@ private slots:
     void on_open_filters_clicked();
     void open_settings();
 
+    void on_close_filters_clicked();
+
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;

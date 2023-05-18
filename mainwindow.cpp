@@ -155,8 +155,8 @@ void MainWindow::on_set_button_clicked()
         YELLOW
     };
     //Ограничение амплитуды, стянуть к оси,  фильтр 1, фильтр 2
-    QColor color_list[] = { QColor("#FF0000"), QColor("#00FF00"), QColor("#0000FF"), QColor("#FFFF00") };
-    QString filter_name[] = { "Ограничение амплитуды", "стянуть к оси", "фильтр 1", "фильтр 2"};
+    QColor color_list[] = { QColor("#FF0000"), QColor("#00FF00"), QColor("#0000FF"), QColor("#FFFF00"), QColor("#FFFFFF") };
+    QString filter_name[] = { "Ограничение амплитуды", "стянуть к оси", "фильтр 1", "фильтр 2", "Конец"};
 
 
     QTreeWidgetItem* current_item = ui->filters_information->currentItem();
@@ -329,22 +329,38 @@ void MainWindow::on_open_filters_clicked()
 
 void MainWindow::open_settings()
 {
-    QWidget *widget = new QWidget();
-    QHBoxLayout *layout = new QHBoxLayout(widget);  // создаем горизонтальный QHBoxLayout
-    QLabel *label = new QLabel(m_selected_item->get_name());
-    qDebug() << m_selected_item->get_name();
-    QLineEdit *lineEdit = new QLineEdit;
-    layout->addWidget(label);
-    layout->addWidget(lineEdit);
+    if (m_selected_item && ui->filters->count() == 0)
+    {
+        QWidget *widget = new QWidget();
+        QHBoxLayout *layout = new QHBoxLayout(widget);  // создаем горизонтальный QHBoxLayout
+        QLabel *label = new QLabel(m_selected_item->get_name());
+        qDebug() << m_selected_item->get_name();
+        QLineEdit *lineEdit = new QLineEdit;
+        layout->addWidget(label);
+        layout->addWidget(lineEdit);
 
 
-    QListWidgetItem *newItem = new QListWidgetItem();
-    newItem->setSizeHint(widget->sizeHint());
-    //newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
-    ui->filters->addItem(newItem);
-    ui->filters->setItemWidget(newItem, widget);
-    qDebug() << "Ура";
+        QListWidgetItem *newItem = new QListWidgetItem();
+        newItem->setSizeHint(widget->sizeHint());
+        //newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
+        ui->filters->addItem(newItem);
+        ui->filters->setItemWidget(newItem, widget);
+        qDebug() << "Ура";
 
-    connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
+        connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
+    }
+}
+
+
+void MainWindow::on_close_filters_clicked()
+{
+    // Получаем количество элементов в QListWidget
+    int count = ui->filters->count();
+
+    // Удаляем элементы из QListWidget в цикле
+    for(int i = 0; i < count; ++i) {
+        QListWidgetItem* item = ui->filters->takeItem(0); // Удаляем элемент с индексом 0
+        delete item; // Удаляем объект QListWidgetItem из памяти
+    }
 }
 
