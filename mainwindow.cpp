@@ -33,20 +33,13 @@ MainWindow::MainWindow(QWidget* parent)
     static_end_item->setData(Qt::UserRole, "конец");
     static_end_item->set_name("конец");
 
-    //connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
-
-    //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
-    //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
-
-
-
     db = new DataBase();
     db->connectToDataBase();
 
     scene = new QGraphicsScene(this);   // Инициализируем графическую сцену
     ui->graphics_view->setScene(scene); //  Устанавливаем графическую сцену в graphics_view
     scene->setItemIndexMethod(QGraphicsScene::NoIndex); // настраиваем индексацию элементов
-    scene->setSceneRect(0,0,500,500); // Устанавливаем размер сцены
+    scene->setSceneRect(0, 0, 300, 300); // Устанавливаем размер сцены
 
     socket = new QTcpSocket(this);
     connect(socket,&QTcpSocket::readyRead,this,&MainWindow::slotReadyRead);
@@ -62,6 +55,7 @@ MainWindow::MainWindow(QWidget* parent)
     connect(static_settings_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
     connect(static_end_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
     connect(static_settings_item, &MoveItem::itemSelected, this, &MainWindow::set_selected_item);
+    connect(static_end_item, &MoveItem::itemSelected, this, &MainWindow::set_selected_item);
 }
 
 
@@ -74,6 +68,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_action_open_triggered()
 {
     QString str = QFileDialog::getExistingDirectory(0, "Choose file", "");
+    read_pattern(str);
 }
 
 
@@ -366,7 +361,7 @@ void MainWindow::set_selected_item(MoveItem *item)
 
 void MainWindow::delete_item()
 {
-    if (m_selected_item && m_selected_item != item_list_in_order[0])
+    if (m_selected_item && m_selected_item != item_list_in_order[0] && m_selected_item != item_list_in_order[item_list_in_order.size() - 1])
     {
        for (int i = 0; i < item_list.size(); ++i)
        {
@@ -426,8 +421,6 @@ void MainWindow::open_settings()
 }
 
 
-
-
 void MainWindow::close_filter()
 {
     // Получаем количество элементов в QListWidget
@@ -450,5 +443,61 @@ void MainWindow::on_copy_button_clicked()
 void MainWindow::insert_copy()
 {
 
+}
+
+
+#define SETTINGS "settings"
+#define PULL_TO_AXIS "стянуть к оси"
+#define LIMIT_AMPLITUDE "Ограничение амплитуды"
+#define FILTER_1 "фильтр 1"
+#define FILTER_2 "фильтр 2"
+#define END "конец"
+
+
+void MainWindow::write_pattern()
+{
+    QString path = item_list_in_order[item_list_in_order.size() - 1]->get_values(item_list_in_order[item_list_in_order.size() - 1]->get_name()) + ".txt";
+    QFile file(path);
+    if (file.open(QIODevice::Append | QIODevice::Text)) {
+        QTextStream out(&file);
+        for (int i = 0; i < item_list_in_order.size(); ++i)
+        {
+            QString label = item_list_in_order[i]->get_name();
+            if (label == SETTINGS)
+                out << "settings" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == PULL_TO_AXIS)
+                out << "multiply" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == LIMIT_AMPLITUDE)
+                out << "amplitude" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == FILTER_1)
+                out << "filter_1" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == FILTER_2)
+                out << "filter_2" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == END)
+                out << "end" << " " << item_list_in_order[i]->get_values(label) << "\n";
+        }
+    }
+    else {
+        qDebug() << "Файл не открыт\n";
+    }
+}
+
+void MainWindow::read_pattern(QString path)
+{
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file); // Создание потока для чтения данных
+        QString line = in.readLine(); // Чтение первой строки из файла
+        // Обработка данных
+        file.close(); // Закрытие файла
+    }
+}
+
+void MainWindow::on_save_pattern_clicked()
+{
+    if (item_list_in_order[item_list_in_order.size() - 1]->get_values(item_list_in_order[item_list_in_order.size() - 1]->get_name()) != "")
+    {
+        write_pattern();
+    }
 }
 

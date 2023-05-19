@@ -120,6 +120,7 @@ void MoveItem::set_value(QString value)
     this->filters_value.append(value);
 }
 
+
 void MoveItem::set_value(QString label, QString value)
 {
     if (filters_values.contains(label))
@@ -128,7 +129,9 @@ void MoveItem::set_value(QString label, QString value)
         filters_values.insert(label, value);
 }
 
+
 QString MoveItem::get_values(QString name)
 {
     return filters_values[name];
 }
+

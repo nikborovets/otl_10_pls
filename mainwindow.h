@@ -16,6 +16,14 @@
 #include "move_item.h"
 #include "MyPlot.h"
 
+#define SETTINGS "settings"
+#define PULL_TO_AXIS "стянуть к оси"
+#define LIMIT_AMPLITUDE "Ограничение амплитуды"
+#define FILTER_1 "фильтр 1"
+#define FILTER_2 "фильтр 2"
+#define END "конец"
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -56,8 +64,10 @@ private slots:
     void ReDrawLines();
     void insert_copy();
 
-signals:
-    void clicked_button();
+    void write_pattern();
+    void read_pattern(QString path);
+
+    void on_save_pattern_clicked();
 
 private:
     Ui::MainWindow* ui;
