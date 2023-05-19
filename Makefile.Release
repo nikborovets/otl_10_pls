@@ -127,16 +127,7 @@ compiler_rcc_make_all: release/qrc_ToolsBar.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_ToolsBar.cpp
 release/qrc_ToolsBar.cpp: ToolsBar.qrc \
-		C:/Qt/6.4.3/mingw_64/bin/rcc.exe \
-		image/remove.png \
-		image/back.png \
-		image/save.png \
-		image/open.png \
-		image/next.png \
-		image/settings.png \
-		image/print.png \
-		image/index.png \
-		image/picture.png
+		C:/Qt/6.4.3/mingw_64/bin/rcc.exe
 	C:\Qt\6.4.3\mingw_64\bin\rcc.exe -name ToolsBar --no-zstd ToolsBar.qrc -o release\qrc_ToolsBar.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -253,7 +244,7 @@ release/moc_DataBase.cpp: DataBase.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QDebug \
 		release/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include DataBase.h -o release\moc_DataBase.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Илья/Desktop/qt/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Илья/Desktop/qt/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include DataBase.h -o release\moc_DataBase.cpp
 
 release/moc_mainwindow.cpp: mainwindow.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QMainWindow \
@@ -828,7 +819,7 @@ release/moc_mainwindow.cpp: mainwindow.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QTimeZone \
 		release/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Илья/Desktop/qt/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Илья/Desktop/qt/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include mainwindow.h -o release\moc_mainwindow.cpp
 
 release/moc_move_item.cpp: move_item.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QObject \
@@ -1015,7 +1006,7 @@ release/moc_move_item.cpp: move_item.h \
 		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextformat.h \
 		release/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include move_item.h -o release\moc_move_item.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Илья/Desktop/qt/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Илья/Desktop/qt/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include move_item.h -o release\moc_move_item.cpp
 
 release/moc_MyPlot.cpp: MyPlot.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
@@ -1555,7 +1546,7 @@ release/moc_MyPlot.cpp: MyPlot.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QTimeZone \
 		release/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include MyPlot.h -o release\moc_MyPlot.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Илья/Desktop/qt/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Илья/Desktop/qt/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include MyPlot.h -o release\moc_MyPlot.cpp
 
 release/moc_qcustomplot.cpp: qcustomplot.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
@@ -2094,7 +2085,7 @@ release/moc_qcustomplot.cpp: qcustomplot.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QTimeZone \
 		release/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Viktor/Desktop/otl_10_pls/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include qcustomplot.h -o release\moc_qcustomplot.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Илья/Desktop/qt/otl_10_pls/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Илья/Desktop/qt/otl_10_pls -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtPrintSupport -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include qcustomplot.h -o release\moc_qcustomplot.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

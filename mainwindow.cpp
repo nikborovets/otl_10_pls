@@ -38,6 +38,8 @@ MainWindow::MainWindow(QWidget* parent)
     //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
 
+
+
     db = new DataBase();
     db->connectToDataBase();
 
@@ -111,10 +113,10 @@ void MainWindow::settings_filter()
 }
 
 
-void MainWindow::on_save_filters_clicked()
-{
-    //qDebug() << ui->filters->item(0)->text();
-    //m_selected_item->set_value(m_selected_item->get_name(), ui->filters->item(0)->text());
+void MainWindow::on_save_filters_clicked(QString s1,QString s2)
+{ 
+    m_moderation_item->set_value(s1, s2);
+    qDebug()<<s1<<" "<<s2;
 }
 
 
@@ -391,13 +393,15 @@ void MainWindow::delete_item()
 
 void MainWindow::open_settings()
 {
+
     if (m_selected_item && ui->filters->count() == 0)
     {
+        m_moderation_item = m_selected_item;
         QWidget *widget = new QWidget();
         QHBoxLayout *layout = new QHBoxLayout(widget);  // создаем горизонтальный QHBoxLayout
-        QLabel *label = new QLabel(m_selected_item->get_name());
-        qDebug() << m_selected_item->get_name();
-        QLineEdit *lineEdit = new QLineEdit;
+        QLabel *label = new QLabel(m_moderation_item->get_name());
+        //qDebug() << m_moderation_item->get_name();
+        QLineEdit *lineEdit = new QLineEdit();
         layout->addWidget(label);
         layout->addWidget(lineEdit);
 
@@ -407,17 +411,17 @@ void MainWindow::open_settings()
         newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
         ui->filters->addItem(newItem);
         ui->filters->setItemWidget(newItem, widget);
-        qDebug() << "Ура";
+        //qDebug() << "Ура";
 
         //connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
         QPair<QLabel*, QLineEdit*> values = {label, lineEdit};
         ui->filters->item(0)->setText(lineEdit->text());
-        connect(lineEdit, &QLineEdit::editingFinished, m_selected_item, [=]() {
-            m_selected_item->set_value(label->text(), lineEdit->text());
-            qDebug() << label->text() << " " << lineEdit->text();
+        lineEdit->setText(m_moderation_item->get_values(m_moderation_item->get_name()));
+
+        connect(lineEdit, &QLineEdit::editingFinished, this, [=]() {
+            on_save_filters_clicked(label->text(), lineEdit->text());
         });
 
-        //connect(ui->save_filters, &QPushButton::clicked, lineEdit, &MainWindow::save_set);
     }
 }
 

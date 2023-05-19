@@ -128,3 +128,7 @@ void MoveItem::set_value(QString label, QString value)
         filters_values.insert(label, value);
 }
 
+QString MoveItem::get_values(QString name)
+{
+    return filters_values[name];
+}

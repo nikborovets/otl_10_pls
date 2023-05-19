@@ -32,7 +32,7 @@ public:
 
 private slots:
     void on_action_open_triggered();
-    void on_save_filters_clicked();
+    void on_save_filters_clicked(QString s1,QString s2);
     void on_push_button_clicked();
     void on_set_button_clicked();
     void on_close_filters_clicked();
@@ -76,6 +76,8 @@ private:
     MoveItem* m_selected_item = nullptr;
     MoveItem* m_first_selected = nullptr; // первый выбранный филтр для соединения
     MoveItem* m_second_selected = nullptr; // второй выбранный филтр для соединения
+
+    MoveItem* m_moderation_item = nullptr;
     bool m_second_inside_orader = false;
 
 //  client code

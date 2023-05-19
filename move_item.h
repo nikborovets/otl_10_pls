@@ -32,6 +32,7 @@ public:
     void set_value(QString value);
 
     const QColor& getColor() const;
+    QString get_values(QString name);
 
 public slots:
     void set_value(QString label, QString value);
