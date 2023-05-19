@@ -51,11 +51,14 @@ void scan(std::string path_file, QVector<double> &x, QVector<double> &y)
 GraphWidget::GraphWidget(QWidget* parent)
     : QWidget(parent)
 {
-    std::string fpath = "C://c++//AKIP0001.csv";
 
+}
+
+GraphWidget::set_settings(std::string fpath)
+{
     m_plot = new QCustomPlot(this);
 
-
+    qDebug() << (QString::fromStdString(fpath));
     m_plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom ); // | QCP::iSelectPlottables
     QPushButton* button = new QPushButton("update", this);
 
@@ -65,8 +68,6 @@ GraphWidget::GraphWidget(QWidget* parent)
 
 
     // Создаем график
-    setFixedSize(1080, 1080);
-
     QCPGraph* graph = m_plot->addGraph();
 
     scan(fpath, this->x, this->y);
@@ -79,11 +80,11 @@ GraphWidget::GraphWidget(QWidget* parent)
     m_plot->rescaleAxes();
     m_plot->replot();
 
-    connect(button, &QPushButton::clicked, this, [this](){
+    connect(button, &QPushButton::clicked, this, [this]()
+            {
 
-        m_plot->graph(0)->setData(x, y);
-        m_plot->rescaleAxes();
-        m_plot->replot();
-    });
-
+                m_plot->graph(0)->setData(x, y);
+                m_plot->rescaleAxes();
+                m_plot->replot();
+            });
 }

@@ -141,6 +141,11 @@ void MainWindow::on_push_button_clicked()
     system(shish->value("Path").toString().toUtf8().data());
 
     GraphWidget* plot = new GraphWidget(this);
+
+    QString label = item_list_in_order[0]->get_name();
+    QString path_file = item_list_in_order[0]->get_values(label);
+
+    plot->set_settings(path_file.toStdString());
     plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
     plot->setWindowTitle("График");
     plot->show();
@@ -306,6 +311,11 @@ void MainWindow::slotReadyRead()
             if (str == "complete")
             {
                 GraphWidget* plot = new GraphWidget(this);
+
+                QString label = item_list_in_order[0]->get_name();
+                QString path_file = item_list_in_order[0]->get_values(label);
+
+                plot->set_settings(path_file.toStdString());
                 plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
                 plot->setWindowTitle("График");
                 plot->show();
@@ -407,9 +417,11 @@ void MainWindow::calculate_pattern()
     //qDebug() << socket-> isValid();
     socket->connectToHost("127.0.0.1", 3230);
 
-    QString path_file = "C:\\c++\\AKIP0002.csv";
+    QString label = item_list_in_order[0]->get_name();
+    QString path_file = item_list_in_order[0]->get_values(label);
     pattern_path = open_dialog();
-    QString result_path = "C:\\c++\\AKIP0001.csv";
+    label = item_list_in_order[item_list_in_order.size()-1]->get_name();
+    QString result_path = item_list_in_order[item_list_in_order.size()-1]->get_values(label);
 
     pattern_path += ".txt";
     QFile file(pattern_path);
@@ -442,7 +454,7 @@ void MainWindow::calculate_pattern()
     path_file += pattern_path;
     path_file += "$";
     path_file += result_path;
-
+    qDebug()<<pattern_path;
     SendToServer(path_file);
 }
 

@@ -1,6 +1,6 @@
 #include "generator.h"
 #include "qdebug.h"
-
+#include "QFile"
 GENERATOR::GENERATOR(std::string &s,std::string &s1)
 {
     this->path_file = s;
@@ -45,9 +45,9 @@ void GENERATOR::scan()
 
 
         int i = 0;
-        while(i<20000)
+        while(std::getline(in1, line))
         {
-            std::getline(in1, line);
+
             for(int j =0;j<line.size();j++)
             {
                 if (line[j]==',')
@@ -105,18 +105,20 @@ void GENERATOR::graph_multiplication(double k)
 
 void GENERATOR::printfile()
 {
-    std::ofstream out;
-    out.open(this->path_result);
-    if (out.is_open())
+    QFile f(QString::fromStdString(this->path_result));
+    if (f.open(QIODevice::Append | QIODevice::Text))
     {
-        out << x_head.toStdString() << " " << y_head.toStdString() << '\n';
-        for(long i =0; i < x.size(); i++)
+                QTextStream out(&f);
+                out << x_head << " " << y_head << '\n';
+                for(long i =0; i < x.size(); i++)
                 {
 
                     out << x[i] << "," << y[i] << '\n';
                 }
     }
-    out.close();
+    else {
+                qDebug() << "Файл не открыт\n";
+    }
 };
 
 void GENERATOR::derivative()
@@ -128,6 +130,13 @@ void GENERATOR::derivative()
     }
 };
 
+#define SETTINGS "settings"
+#define PULL_TO_AXIS "multiply"
+#define LIMIT_AMPLITUDE "amplitude"
+#define FILTER_1 "filter_1"
+#define FILTER_2 "filter_2"
+#define END "end"
+
 void GENERATOR::produce()
 {
 
@@ -135,13 +144,34 @@ void GENERATOR::produce()
     {
         this->scan();
     }
-    if (true
-        //    not(  this->path_pattern.size() == 0)
-       )
+    if (not(  this->path_pattern.size() == 0))
     {
-        this->amplitude(0.5,0.0004);
-        this->graph_multiplication(10);
+        QFile file(QString::fromStdString(this->path_pattern));
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            QTextStream in(&file);
+            while (!in.atEnd())
+            {
+                QString line = in.readLine(); // читаем строку из файла
+                QStringList words = line.split(" "); // разбиваем на слова
+                QString label = words.at(0);
+                if (label == SETTINGS)
+                    continue;
+                else if (label == PULL_TO_AXIS)
+                    graph_multiplication(words.at(1).toDouble());
+                else if (label == LIMIT_AMPLITUDE)
+                    amplitude(words.at(1).toDouble());
+                else if (label == FILTER_1)
+                    continue;
+                else if (label == FILTER_2)
+                    continue;
+                else if (label == END)
+                    break;
+            }
+
+        }
     }
+
 
     this->printfile();
 };
