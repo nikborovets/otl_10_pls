@@ -58,8 +58,8 @@ struct qt_meta_stringdata_MainWindow_t {
     char stringdata26[12];
     char stringdata27[12];
     char stringdata28[14];
-    char stringdata29[13];
-    char stringdata30[5];
+    char stringdata29[5];
+    char stringdata30[13];
     char stringdata31[24];
 };
 #define QT_MOC_LITERAL(ofs, len) \
@@ -95,8 +95,8 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
         QT_MOC_LITERAL(424, 11),  // "ReDrawLines"
         QT_MOC_LITERAL(436, 11),  // "insert_copy"
         QT_MOC_LITERAL(448, 13),  // "write_pattern"
-        QT_MOC_LITERAL(462, 12),  // "read_pattern"
-        QT_MOC_LITERAL(475, 4),  // "path"
+        QT_MOC_LITERAL(462, 4),  // "path"
+        QT_MOC_LITERAL(467, 12),  // "read_pattern"
         QT_MOC_LITERAL(480, 23)   // "on_save_pattern_clicked"
     },
     "MainWindow",
@@ -128,8 +128,8 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
     "ReDrawLines",
     "insert_copy",
     "write_pattern",
-    "read_pattern",
     "path",
+    "read_pattern",
     "on_save_pattern_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -170,9 +170,9 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
       25,    0,  186,    2, 0x08,   24 /* Private */,
       26,    0,  187,    2, 0x08,   25 /* Private */,
       27,    0,  188,    2, 0x08,   26 /* Private */,
-      28,    0,  189,    2, 0x08,   27 /* Private */,
-      29,    1,  190,    2, 0x08,   28 /* Private */,
-      31,    0,  193,    2, 0x08,   30 /* Private */,
+      28,    1,  189,    2, 0x08,   27 /* Private */,
+      30,    1,  192,    2, 0x08,   29 /* Private */,
+      31,    0,  195,    2, 0x08,   31 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -196,8 +196,8 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   30,
+    QMetaType::Void, QMetaType::QString,   29,
+    QMetaType::Void, QMetaType::QString,   29,
     QMetaType::Void,
 
        0        // eod
@@ -261,6 +261,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'write_pattern'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'read_pattern'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
@@ -297,7 +298,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 18: _t->close_filter(); break;
         case 19: _t->ReDrawLines(); break;
         case 20: _t->insert_copy(); break;
-        case 21: _t->write_pattern(); break;
+        case 21: _t->write_pattern((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 22: _t->read_pattern((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 23: _t->on_save_pattern_clicked(); break;
         default: ;

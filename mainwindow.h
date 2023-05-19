@@ -64,7 +64,7 @@ private slots:
     void ReDrawLines();
     void insert_copy();
 
-    void write_pattern();
+    void write_pattern(QString path);
     void read_pattern(QString path);
 
     void on_save_pattern_clicked();

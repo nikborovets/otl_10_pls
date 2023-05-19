@@ -454,9 +454,9 @@ void MainWindow::insert_copy()
 #define END "конец"
 
 
-void MainWindow::write_pattern()
+void MainWindow::write_pattern(QString path)
 {
-    QString path = item_list_in_order[item_list_in_order.size() - 1]->get_values(item_list_in_order[item_list_in_order.size() - 1]->get_name()) + ".txt";
+    path += ".txt";
     QFile file(path);
     if (file.open(QIODevice::Append | QIODevice::Text)) {
         QTextStream out(&file);
@@ -495,9 +495,30 @@ void MainWindow::read_pattern(QString path)
 
 void MainWindow::on_save_pattern_clicked()
 {
-    if (item_list_in_order[item_list_in_order.size() - 1]->get_values(item_list_in_order[item_list_in_order.size() - 1]->get_name()) != "")
-    {
-        write_pattern();
+    // Создаем диалоговое окно
+    QDialog *inputDialog = new QDialog(this);
+    // Задаем название окна
+    inputDialog->setWindowTitle("Название шаблона");
+    // Создаем поле для ввода текста
+    QLineEdit *lineEdit = new QLineEdit(inputDialog);
+    // Задаем начальное значение поля
+    lineEdit->setText("0");
+    // Создаем кнопки "OK" и "Cancel"
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, inputDialog);
+    // Подключаем сигналы от кнопок к слотам обработки событий
+    connect(buttonBox, &QDialogButtonBox::accepted, inputDialog, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, inputDialog, &QDialog::reject);
+    // Создаем вертикальный layout и добавляем на форму
+    QVBoxLayout *layout = new QVBoxLayout(inputDialog);
+    layout->addWidget(lineEdit);
+    layout->addWidget(buttonBox);
+    // Устанавливаем вертикальный layout
+    inputDialog->setLayout(layout);
+    // Отображаем диалоговое окно и ожидаем его закрытия
+    if(inputDialog->exec() == QDialog::Accepted) {
+        QString value = lineEdit->text();
+        write_pattern(value);
     }
+    delete inputDialog;
 }
 
