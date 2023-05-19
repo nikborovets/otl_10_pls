@@ -221,7 +221,6 @@ void MainWindow::ReDrawLines2()
 
 void MainWindow::define_order(MoveItem* item)
 {
-    qDebug() << "Сука";
     for (int i = 0; i < item_list_in_order.size(); ++i)
     {
         if (item == item_list_in_order[i])
@@ -259,6 +258,11 @@ void MainWindow::define_order(MoveItem* item)
                 if (m_second_selected == item_list_in_order[i])
                     second = i;
         }
+        if (first > second)
+        {
+            m_second_selected = nullptr;
+            return;
+        }
         item_list_in_order.remove(second);
         if (first < item_list_in_order.size() - 1)
                 item_list_in_order.insert(first + 1, m_second_selected);
@@ -281,7 +285,6 @@ void MainWindow::define_order(MoveItem* item)
     }
     m_first_selected = nullptr;
     m_second_selected = nullptr;
-    qDebug() << item_list_in_order.size();
     ReDrawLines();
 }
 
@@ -289,7 +292,7 @@ void MainWindow::define_order(MoveItem* item)
 void MainWindow::calculate_pattern()
 {
     //qDebug() << socket-> isValid();
-    socket->connectToHost("127.0.0.1",3230);
+    socket->connectToHost("127.0.0.1", 3230);
 
     QString path_file = "C:\\c++\\AKIP0002.csv";
     QString pattern_path = "C:\\c++\\AKIP0001.csv";
