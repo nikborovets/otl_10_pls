@@ -142,8 +142,8 @@ void MainWindow::on_push_button_clicked()
 
     GraphWidget* plot = new GraphWidget(this);
 
-    QString label = item_list_in_order[0]->get_name();
-    QString path_file = item_list_in_order[0]->get_values(label);
+    label = item_list_in_order[item_list_in_order.size()-1]->get_name();
+    QString result_path = item_list_in_order[item_list_in_order.size()-1]->get_values(label);
 
     plot->set_settings(path_file.toStdString());
     plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
@@ -312,8 +312,8 @@ void MainWindow::slotReadyRead()
             {
                 GraphWidget* plot = new GraphWidget(this);
 
-                QString label = item_list_in_order[0]->get_name();
-                QString path_file = item_list_in_order[0]->get_values(label);
+                label = item_list_in_order[item_list_in_order.size()-1]->get_name();
+                QString result_path = item_list_in_order[item_list_in_order.size()-1]->get_values(label);
 
                 plot->set_settings(path_file.toStdString());
                 plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);

@@ -24,6 +24,8 @@ GENERATOR::GENERATOR()
 
 void GENERATOR::scan()
 {
+    this->x.clear();
+    this->y.clear();
     std::string line;
     std::ifstream in1(this->path_file);
     if (in1.is_open())
@@ -174,6 +176,7 @@ void GENERATOR::produce()
 
 
     this->printfile();
+    this->clear();
 };
 
 void GENERATOR::clear()
@@ -181,6 +184,10 @@ void GENERATOR::clear()
     this->path_file = "";
     this->path_pattern = "";
     this->path_result = "";
+    this->x.clear();
+    this->y.clear();
+    this->x_head.clear();
+    this->y_head.clear();
 }
 
 bool GENERATOR::ready()
