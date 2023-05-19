@@ -200,24 +200,6 @@ void MainWindow::ReDrawLines()
     }
 }
 
-void MainWindow::ReDrawLines2()
-{
-    for (int i = 0; i < line_list.size(); i++)
-    {
-        scene->removeItem(line_list[i]);
-    }
-    line_list.clear();
-    for (int i = 0; i < item_list.size() - 1; i++)
-    {
-        QPointF center_1 = item_list[i]->pos() + QPointF(item_list[i]->childrenBoundingRect().width() / 2.0, item_list[i]->childrenBoundingRect().height() / 2.0);
-        QPointF center_2 = item_list[i + 1]->pos() + QPointF(item_list[i + 1]->childrenBoundingRect().width() / 2.0, item_list[i + 1]->childrenBoundingRect().height() / 2.0);
-        QGraphicsLineItem* connect_line = new QGraphicsLineItem(0, 0, 50, 50);
-        scene->addItem(connect_line);
-        connect_line->setZValue(-1);
-        connect_line->setLine(QLineF(center_1, center_2));
-        line_list.push_back(connect_line);
-    }
-}
 
 void MainWindow::define_order(MoveItem* item)
 {
@@ -441,5 +423,17 @@ void MainWindow::close_filter()
         QListWidgetItem* item = ui->filters->takeItem(0); // Удаляем элемент с индексом 0
         delete item; // Удаляем объект QListWidgetItem из памяти
     }
+}
+
+
+void MainWindow::on_copy_button_clicked()
+{
+    insert_copy();
+}
+
+
+void MainWindow::insert_copy()
+{
+
 }
 

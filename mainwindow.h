@@ -39,6 +39,7 @@ private slots:
     void on_calculate_clicked();
     void on_delete_button_clicked();
     void on_open_filters_clicked();
+    void on_copy_button_clicked();
 
     void on_filters_itemChanged(QListWidgetItem *item);
 
@@ -53,7 +54,7 @@ private slots:
     void calculate_pattern();
     void close_filter();
     void ReDrawLines();
-    void ReDrawLines2();
+    void insert_copy();
 
 private:
     Ui::MainWindow* ui;
