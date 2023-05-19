@@ -21,14 +21,12 @@ SOURCES += \
     mainwindow.cpp \
     move_item.cpp \
     MyPlot.cpp\
-    MyWidget.cpp\
     qcustomplot.cpp
 HEADERS += \
     DataBase.h \
     mainwindow.h  \
     move_item.h \
     MyPlot.h \
-    MyWidget.h \
     qcustomplot.h
 
 FORMS += \

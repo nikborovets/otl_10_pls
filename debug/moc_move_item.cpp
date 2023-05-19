@@ -8,6 +8,7 @@
 
 #include <memory>
 #include "../move_item.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'move_item.h' doesn't include <QObject>."
@@ -26,7 +27,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_MoveItem_t {
-    uint offsetsAndSizes[14];
+    uint offsetsAndSizes[20];
     char stringdata0[9];
     char stringdata1[17];
     char stringdata2[1];
@@ -34,6 +35,9 @@ struct qt_meta_stringdata_MoveItem_t {
     char stringdata4[5];
     char stringdata5[10];
     char stringdata6[13];
+    char stringdata7[10];
+    char stringdata8[6];
+    char stringdata9[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MoveItem_t::offsetsAndSizes) + ofs), len 
@@ -45,7 +49,10 @@ Q_CONSTINIT static const qt_meta_stringdata_MoveItem_t qt_meta_stringdata_MoveIt
         QT_MOC_LITERAL(27, 9),  // "MoveItem*"
         QT_MOC_LITERAL(37, 4),  // "item"
         QT_MOC_LITERAL(42, 9),  // "itemMoved"
-        QT_MOC_LITERAL(52, 12)   // "itemSelected"
+        QT_MOC_LITERAL(52, 12),  // "itemSelected"
+        QT_MOC_LITERAL(65, 9),  // "set_value"
+        QT_MOC_LITERAL(75, 5),  // "label"
+        QT_MOC_LITERAL(81, 5)   // "value"
     },
     "MoveItem",
     "selectionChanged",
@@ -53,7 +60,10 @@ Q_CONSTINIT static const qt_meta_stringdata_MoveItem_t qt_meta_stringdata_MoveIt
     "MoveItem*",
     "item",
     "itemMoved",
-    "itemSelected"
+    "itemSelected",
+    "set_value",
+    "label",
+    "value"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -64,7 +74,7 @@ Q_CONSTINIT static const uint qt_meta_data_MoveItem[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -72,14 +82,20 @@ Q_CONSTINIT static const uint qt_meta_data_MoveItem[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   32,    2, 0x06,    1 /* Public */,
-       5,    0,   35,    2, 0x06,    3 /* Public */,
-       6,    1,   36,    2, 0x06,    4 /* Public */,
+       1,    1,   38,    2, 0x06,    1 /* Public */,
+       5,    0,   41,    2, 0x06,    3 /* Public */,
+       6,    1,   42,    2, 0x06,    4 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       7,    2,   45,    2, 0x0a,    6 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 3,    4,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    8,    9,
 
        0        // eod
 };
@@ -100,7 +116,11 @@ Q_CONSTINIT const QMetaObject MoveItem::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'itemSelected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<MoveItem *, std::false_type>
+        QtPrivate::TypeAndForceComplete<MoveItem *, std::false_type>,
+        // method 'set_value'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -114,6 +134,7 @@ void MoveItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<MoveItem*>>(_a[1]))); break;
         case 1: _t->itemMoved(); break;
         case 2: _t->itemSelected((*reinterpret_cast< std::add_pointer_t<MoveItem*>>(_a[1]))); break;
+        case 3: _t->set_value((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -181,13 +202,13 @@ int MoveItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

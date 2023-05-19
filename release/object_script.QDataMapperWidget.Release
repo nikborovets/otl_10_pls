@@ -3,7 +3,6 @@ release/main.o
 release/mainwindow.o
 release/move_item.o
 release/MyPlot.o
-release/MyWidget.o
 release/qcustomplot.o
 release/qrc_ToolsBar.o
 release/moc_DataBase.o

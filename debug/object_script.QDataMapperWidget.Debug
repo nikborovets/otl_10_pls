@@ -3,7 +3,6 @@ debug/main.o
 debug/mainwindow.o
 debug/move_item.o
 debug/MyPlot.o
-debug/MyWidget.o
 debug/qcustomplot.o
 debug/qrc_ToolsBar.o
 debug/moc_DataBase.o

@@ -135,8 +135,6 @@ public:
         __qtreewidgetitem2->setFont(0, font);
         QTreeWidgetItem *__qtreewidgetitem3 = new QTreeWidgetItem(filters_information);
         __qtreewidgetitem3->setFont(0, font);
-        QTreeWidgetItem *__qtreewidgetitem4 = new QTreeWidgetItem(filters_information);
-        __qtreewidgetitem4->setFont(0, font);
         filters_information->setObjectName("filters_information");
         filters_information->setMaximumSize(QSize(16777215, 206));
         filters_information->setLayoutDirection(Qt::LeftToRight);
@@ -294,12 +292,10 @@ public:
         ___qtreewidgetitem3->setText(0, QCoreApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 1", nullptr));
         QTreeWidgetItem *___qtreewidgetitem4 = filters_information->topLevelItem(3);
         ___qtreewidgetitem4->setText(0, QCoreApplication::translate("MainWindow", "\320\244\320\270\320\273\321\214\321\202\321\200 2", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem5 = filters_information->topLevelItem(4);
-        ___qtreewidgetitem5->setText(0, QCoreApplication::translate("MainWindow", "\320\232\320\276\320\275\320\265\321\206", nullptr));
         filters_information->setSortingEnabled(__sortingEnabled);
 
-        QTreeWidgetItem *___qtreewidgetitem6 = patterns->headerItem();
-        ___qtreewidgetitem6->setText(0, QCoreApplication::translate("MainWindow", "\320\250\320\260\320\261\320\273\320\276\320\275\321\213", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem5 = patterns->headerItem();
+        ___qtreewidgetitem5->setText(0, QCoreApplication::translate("MainWindow", "\320\250\320\260\320\261\320\273\320\276\320\275\321\213", nullptr));
         clear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
         save_filters->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
         copy_button->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\277\320\270\321\217", nullptr));

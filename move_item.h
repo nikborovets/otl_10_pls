@@ -11,6 +11,9 @@
 #include <QWidget>
 #include <QColor>
 #include <QVector>
+#include <QMap>
+#include <QLabel>
+#include <QLineEdit>
 
 
 class MoveItem : public QObject, public QGraphicsItem
@@ -26,7 +29,13 @@ public:
     void setColor(QColor color);
     QString get_name();
     void set_name(QString name);
+    void set_value(QString value);
+
     const QColor& getColor() const;
+
+public slots:
+    void set_value(QString label, QString value);
+
 
 private:
     QRectF boundingRect() const;
@@ -43,11 +52,16 @@ signals:
 
 
 private:
+    QRectF m_rect;
+
     QWidget* m_parentWidget;
     QPointF m_shiftMouseCoords;
 
     QColor m_color;
     QString m_name;
+
+    QVector<QString> filters_value;
+    QMap<QString, QString> filters_values;
 };
 
 #endif // MOVE_ITEM_H

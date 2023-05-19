@@ -19,12 +19,19 @@ MainWindow::MainWindow(QWidget* parent)
     shish->setValue("Path", "\0");
     ui->setupUi(this);
 
-    MoveItem* static_settings_item = new MoveItem();
+    MoveItem* static_settings_item = new MoveItem(); // начало
     item_list.push_back(static_settings_item);
     item_list_in_order.push_back(static_settings_item);
     static_settings_item->setColor(Qt::gray);
     static_settings_item->setData(Qt::UserRole, "settings");
     static_settings_item->set_name("settings");
+
+    MoveItem* static_end_item = new MoveItem();
+    item_list.push_back(static_end_item);
+    item_list_in_order.push_back(static_end_item);
+    static_end_item->setColor(Qt::gray);
+    static_end_item->setData(Qt::UserRole, "конец");
+    static_end_item->set_name("конец");
 
     //connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
 
@@ -46,7 +53,13 @@ MainWindow::MainWindow(QWidget* parent)
 
 
     scene->addItem(static_settings_item);
+    scene->addItem(static_end_item);
+
     connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::define_order);
+    connect(static_end_item, &MoveItem::selectionChanged, this, &MainWindow::define_order);
+    connect(static_settings_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
+    connect(static_end_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
+    connect(static_settings_item, &MoveItem::itemSelected, this, &MainWindow::set_selected_item);
 }
 
 
@@ -100,13 +113,8 @@ void MainWindow::settings_filter()
 
 void MainWindow::on_save_filters_clicked()
 {
-    QSettings settings("MyCompany", "MyApp");
-    for (int i = 0; i < ui->filters->count(); i++)
-    {
-        QString myValue = settings.value("MyParameter", "").toString();
-        qDebug() << myValue;
-       // out << ui->filters->item(i)->text() << "\n";
-    }
+    //qDebug() << ui->filters->item(0)->text();
+    //m_selected_item->set_value(m_selected_item->get_name(), ui->filters->item(0)->text());
 }
 
 
@@ -144,40 +152,33 @@ void MainWindow::on_push_button_clicked()
 
 void MainWindow::add_pattern_on_scene()
 {
-    enum Color {
-        RED,
-        GREEN,
-        BLUE,
-        YELLOW
-    };
-    //Ограничение амплитуды, стянуть к оси,  фильтр 1, фильтр 2
-    QColor color_list[] = { QColor("#FF0000"), QColor("#00FF00"), QColor("#0000FF"), QColor("#FFFF00"), QColor("#FFFFFF") };
-    QString filter_name[] = { "Ограничение амплитуды", "стянуть к оси", "фильтр 1", "фильтр 2", "Конец"};
+
+    QString filter_name[] = { "Ограничение амплитуды", "стянуть к оси", "фильтр 1", "фильтр 2"};
 
 
     QTreeWidgetItem* current_item = ui->filters_information->currentItem();
     if (!current_item)
         return;
-    int color_number = ui->filters_information->currentIndex().row();
-    QColor my_color = color_list[color_number];
+    int order_number = ui->filters_information->currentIndex().row();
 
     MoveItem* filter_item = new MoveItem();
     item_list.push_back(filter_item);
     //qDebug() << item_list.size() << "\n";
 
-    filter_item->setColor(my_color);
-    filter_item->set_name(filter_name[color_number]);
-    filter_item->setData(Qt::UserRole, filter_name[color_number]);
+    filter_item->set_name(filter_name[order_number]);
+    filter_item->setData(Qt::UserRole, filter_name[order_number]);
+    filter_item->setToolTip(filter_name[order_number]);
 
     scene->addItem(filter_item);
     //connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
 
 
     connect(filter_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
-    //ReDrawLines2();
+    //ReDrawLines();
 
     connect(filter_item, &MoveItem::itemSelected, this, &MainWindow::set_selected_item); // связь с кнопкой удалить
     connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::define_order); // связь с порядком связи шаблонов
+
 }
 
 
@@ -207,7 +208,7 @@ void MainWindow::define_order(MoveItem* item)
     {
         if (item == item_list_in_order[i])
         {
-                if (m_first_selected == nullptr)
+                if (m_first_selected == nullptr && i < item_list_in_order.size() - 1)
                 {
                     m_first_selected = item;
                     return;
@@ -346,10 +347,10 @@ void MainWindow::on_filters_itemChanged(QListWidgetItem *item)
     QString itemText = item->text();
 
     // Создать QSettings объект
-    QSettings settings("MyCompany", "MyApp");
+    //QSettings settings("MyCompany", "MyApp");
 
     // Сохранить itemText в качестве значения параметра
-    settings.setValue("MyParameter", itemText);
+    //settings.setValue("MyParameter", itemText);
 
     qDebug() << "Value entered: " << itemText;
 }
@@ -363,7 +364,7 @@ void MainWindow::set_selected_item(MoveItem *item)
 
 void MainWindow::delete_item()
 {
-    if (m_selected_item)
+    if (m_selected_item && m_selected_item != item_list_in_order[0])
     {
        for (int i = 0; i < item_list.size(); ++i)
        {
@@ -403,14 +404,24 @@ void MainWindow::open_settings()
 
         QListWidgetItem *newItem = new QListWidgetItem();
         newItem->setSizeHint(widget->sizeHint());
-        //newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
+        newItem->setFlags(newItem->flags() | Qt::ItemIsEditable);
         ui->filters->addItem(newItem);
         ui->filters->setItemWidget(newItem, widget);
         qDebug() << "Ура";
 
-        connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
+        //connect(ui->filters, &QListWidget::itemChanged, this, &MainWindow::on_filters_itemChanged);
+        QPair<QLabel*, QLineEdit*> values = {label, lineEdit};
+        ui->filters->item(0)->setText(lineEdit->text());
+        connect(lineEdit, &QLineEdit::editingFinished, m_selected_item, [=]() {
+            m_selected_item->set_value(label->text(), lineEdit->text());
+            qDebug() << label->text() << " " << lineEdit->text();
+        });
+
+        //connect(ui->save_filters, &QPushButton::clicked, lineEdit, &MainWindow::save_set);
     }
 }
+
+
 
 
 void MainWindow::close_filter()

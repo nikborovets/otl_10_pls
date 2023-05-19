@@ -56,6 +56,9 @@ private slots:
     void ReDrawLines();
     void insert_copy();
 
+signals:
+    void clicked_button();
+
 private:
     Ui::MainWindow* ui;
     QGraphicsScene* scene;
