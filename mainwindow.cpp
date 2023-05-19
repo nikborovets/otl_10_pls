@@ -9,6 +9,7 @@
 #include <QVariant>
 #include <QGraphicsLineItem>
 #include <QLineF>
+#include <QLabel>
 
 
 MainWindow::MainWindow(QWidget* parent)
@@ -142,10 +143,10 @@ void MainWindow::on_push_button_clicked()
 
     GraphWidget* plot = new GraphWidget(this);
 
-    label = item_list_in_order[item_list_in_order.size()-1]->get_name();
+    QString label = item_list_in_order[item_list_in_order.size()-1]->get_name();
     QString result_path = item_list_in_order[item_list_in_order.size()-1]->get_values(label);
 
-    plot->set_settings(path_file.toStdString());
+    plot->set_settings(result_path.toStdString());
     plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
     plot->setWindowTitle("График");
     plot->show();
@@ -312,10 +313,10 @@ void MainWindow::slotReadyRead()
             {
                 GraphWidget* plot = new GraphWidget(this);
 
-                label = item_list_in_order[item_list_in_order.size()-1]->get_name();
+                QString label = item_list_in_order[item_list_in_order.size()-1]->get_name();
                 QString result_path = item_list_in_order[item_list_in_order.size()-1]->get_values(label);
 
-                plot->set_settings(path_file.toStdString());
+                plot->set_settings(result_path.toStdString());
                 plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
                 plot->setWindowTitle("График");
                 plot->show();
