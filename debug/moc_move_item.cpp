@@ -26,15 +26,14 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_MoveItem_t {
-    uint offsetsAndSizes[16];
+    uint offsetsAndSizes[14];
     char stringdata0[9];
     char stringdata1[17];
     char stringdata2[1];
-    char stringdata3[6];
-    char stringdata4[10];
-    char stringdata5[13];
-    char stringdata6[10];
-    char stringdata7[5];
+    char stringdata3[10];
+    char stringdata4[5];
+    char stringdata5[10];
+    char stringdata6[13];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MoveItem_t::offsetsAndSizes) + ofs), len 
@@ -43,20 +42,18 @@ Q_CONSTINIT static const qt_meta_stringdata_MoveItem_t qt_meta_stringdata_MoveIt
         QT_MOC_LITERAL(0, 8),  // "MoveItem"
         QT_MOC_LITERAL(9, 16),  // "selectionChanged"
         QT_MOC_LITERAL(26, 0),  // ""
-        QT_MOC_LITERAL(27, 5),  // "value"
-        QT_MOC_LITERAL(33, 9),  // "itemMoved"
-        QT_MOC_LITERAL(43, 12),  // "itemSelected"
-        QT_MOC_LITERAL(56, 9),  // "MoveItem*"
-        QT_MOC_LITERAL(66, 4)   // "item"
+        QT_MOC_LITERAL(27, 9),  // "MoveItem*"
+        QT_MOC_LITERAL(37, 4),  // "item"
+        QT_MOC_LITERAL(42, 9),  // "itemMoved"
+        QT_MOC_LITERAL(52, 12)   // "itemSelected"
     },
     "MoveItem",
     "selectionChanged",
     "",
-    "value",
-    "itemMoved",
-    "itemSelected",
     "MoveItem*",
-    "item"
+    "item",
+    "itemMoved",
+    "itemSelected"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -76,13 +73,13 @@ Q_CONSTINIT static const uint qt_meta_data_MoveItem[] = {
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    1,   32,    2, 0x06,    1 /* Public */,
-       4,    0,   35,    2, 0x06,    3 /* Public */,
-       5,    1,   36,    2, 0x06,    4 /* Public */,
+       5,    0,   35,    2, 0x06,    3 /* Public */,
+       6,    1,   36,    2, 0x06,    4 /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 3,    4,
 
        0        // eod
 };
@@ -98,7 +95,7 @@ Q_CONSTINIT const QMetaObject MoveItem::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<MoveItem, std::true_type>,
         // method 'selectionChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<MoveItem *, std::false_type>,
         // method 'itemMoved'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'itemSelected'
@@ -114,7 +111,7 @@ void MoveItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         auto *_t = static_cast<MoveItem *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<MoveItem*>>(_a[1]))); break;
         case 1: _t->itemMoved(); break;
         case 2: _t->itemSelected((*reinterpret_cast< std::add_pointer_t<MoveItem*>>(_a[1]))); break;
         default: ;
@@ -122,6 +119,13 @@ void MoveItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 0:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< MoveItem* >(); break;
+            }
+            break;
         case 2:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
@@ -133,7 +137,7 @@ void MoveItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (MoveItem::*)(const QString & );
+            using _t = void (MoveItem::*)(MoveItem * );
             if (_t _q_method = &MoveItem::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -189,7 +193,7 @@ int MoveItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MoveItem::selectionChanged(const QString & _t1)
+void MoveItem::selectionChanged(MoveItem * _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

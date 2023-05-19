@@ -72,7 +72,7 @@ void MoveItem::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
     if (QApplication::mouseButtons() == Qt::RightButton)
     {
-        emit selectionChanged("Что-то");
+        emit selectionChanged(this);
     }
 
     QGraphicsItem::mousePressEvent(event);

@@ -48,10 +48,12 @@ private slots:
     void delete_item();
     void open_settings();
     void set_selected_item(MoveItem *item);
+    void define_order(MoveItem* item);
     void add_pattern_on_scene();
     void calculate_pattern();
     void close_filter();
     void ReDrawLines();
+    void ReDrawLines2();
 
 private:
     Ui::MainWindow* ui;
@@ -70,6 +72,7 @@ private:
     MoveItem* m_selected_item = nullptr;
     MoveItem* m_first_selected = nullptr; // первый выбранный филтр для соединения
     MoveItem* m_second_selected = nullptr; // второй выбранный филтр для соединения
+    bool m_second_inside_orader = false;
 
 //  client code
 

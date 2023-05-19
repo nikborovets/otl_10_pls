@@ -24,9 +24,9 @@ MainWindow::MainWindow(QWidget* parent)
     item_list_in_order.push_back(static_settings_item);
     static_settings_item->setColor(Qt::gray);
     static_settings_item->setData(Qt::UserRole, "settings");
+    static_settings_item->set_name("settings");
 
-    //scene->addItem(static_settings_item);
-    connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
+    //connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::settings_filter);
 
     //connect(my_item, &MoveItem::selectionChanged, this, &MainWindow::paint_filters);
     //QObject::connect(ui->pushButton, SIGNAL(clicked(Settings*)), this, SLOT(on_pushButton_clicked(Settings*)));
@@ -43,6 +43,10 @@ MainWindow::MainWindow(QWidget* parent)
     connect(socket,&QTcpSocket::readyRead,this,&MainWindow::slotReadyRead);
     connect(socket,&QTcpSocket::disconnected,socket,&QTcpSocket::deleteLater);
     nextBlockSize  = 0;
+
+
+    scene->addItem(static_settings_item);
+    connect(static_settings_item, &MoveItem::selectionChanged, this, &MainWindow::define_order);
 }
 
 
@@ -170,13 +174,33 @@ void MainWindow::add_pattern_on_scene()
 
 
     connect(filter_item, &MoveItem::itemMoved, this, &MainWindow::ReDrawLines);
-    ReDrawLines();
+    //ReDrawLines2();
 
     connect(filter_item, &MoveItem::itemSelected, this, &MainWindow::set_selected_item); // связь с кнопкой удалить
+    connect(filter_item, &MoveItem::selectionChanged, this, &MainWindow::define_order); // связь с порядком связи шаблонов
 }
 
 
 void MainWindow::ReDrawLines()
+{
+    for (int i = 0; i < line_list.size(); i++)
+    {
+        scene->removeItem(line_list[i]);
+    }
+    line_list.clear();
+    for (int i = 0; i < item_list_in_order.size() - 1; i++)
+    {
+        QPointF center_1 = item_list_in_order[i]->pos() + QPointF(item_list_in_order[i]->childrenBoundingRect().width() / 2.0, item_list_in_order[i]->childrenBoundingRect().height() / 2.0);
+        QPointF center_2 = item_list_in_order[i + 1]->pos() + QPointF(item_list_in_order[i + 1]->childrenBoundingRect().width() / 2.0, item_list_in_order[i + 1]->childrenBoundingRect().height() / 2.0);
+        QGraphicsLineItem* connect_line = new QGraphicsLineItem(0, 0, 50, 50);
+        scene->addItem(connect_line);
+        connect_line->setZValue(-1);
+        connect_line->setLine(QLineF(center_1, center_2));
+        line_list.push_back(connect_line);
+    }
+}
+
+void MainWindow::ReDrawLines2()
 {
     for (int i = 0; i < line_list.size(); i++)
     {
@@ -193,6 +217,72 @@ void MainWindow::ReDrawLines()
         connect_line->setLine(QLineF(center_1, center_2));
         line_list.push_back(connect_line);
     }
+}
+
+void MainWindow::define_order(MoveItem* item)
+{
+    qDebug() << "Сука";
+    for (int i = 0; i < item_list_in_order.size(); ++i)
+    {
+        if (item == item_list_in_order[i])
+        {
+                if (m_first_selected == nullptr)
+                {
+                    m_first_selected = item;
+                    return;
+                }
+                else if (m_first_selected == item)
+                {
+                    m_first_selected = nullptr;
+                    return;
+                }
+                else if (m_first_selected && m_second_selected == nullptr)
+                {
+                    m_second_selected = item;
+                    m_second_inside_orader = true;
+                    break;
+                }
+        }
+    }
+    if (m_first_selected && m_second_selected == nullptr)
+    {
+        m_second_selected = item;
+        m_second_inside_orader = false;
+    }
+    if (m_second_inside_orader)
+    {
+        int first = 0, second = 0;
+        for (int i = 0; i < item_list_in_order.size(); ++i)
+        {
+                if (m_first_selected == item_list_in_order[i])
+                    first = i;
+                if (m_second_selected == item_list_in_order[i])
+                    second = i;
+        }
+        item_list_in_order.remove(second);
+        if (first < item_list_in_order.size() - 1)
+                item_list_in_order.insert(first + 1, m_second_selected);
+        else
+                item_list_in_order.append(m_second_selected);
+    }
+    else
+    {
+        for (int i = 0; i < item_list_in_order.size(); ++i)
+        {
+                if (m_first_selected == item_list_in_order[i])
+                {
+                    if (i < item_list_in_order.size() - 1)
+                        item_list_in_order.insert(i + 1, m_second_selected);
+                    else
+                        item_list_in_order.append(m_second_selected);
+                }
+
+        }
+    }
+    m_first_selected = nullptr;
+    m_second_selected = nullptr;
+    qDebug() << item_list_in_order.size();
+    ReDrawLines();
 }
 
 
@@ -295,6 +385,14 @@ void MainWindow::delete_item()
             if (m_selected_item == item_list[i])
             {
                 item_list.remove(i);
+                break;
+            }
+       }
+       for (int i = 0; i < item_list_in_order.size(); ++i)
+       {
+            if (m_selected_item == item_list_in_order[i])
+            {
+                item_list_in_order.remove(i);
                 break;
             }
        }

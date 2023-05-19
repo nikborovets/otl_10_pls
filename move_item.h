@@ -37,7 +37,7 @@ private:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
 
 signals:
-    void selectionChanged(const QString& value);
+    void selectionChanged(MoveItem* item);
     void itemMoved();
     void itemSelected(MoveItem *item);
 
