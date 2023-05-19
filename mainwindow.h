@@ -100,6 +100,8 @@ private:
     void SendToServer(QString str);
     quint16 nextBlockSize;
 
+    QString pattern_path;
+
 
 //
 };

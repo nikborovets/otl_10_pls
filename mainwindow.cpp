@@ -269,23 +269,6 @@ void MainWindow::define_order(MoveItem* item)
 }
 
 
-void MainWindow::calculate_pattern()
-{
-    //qDebug() << socket-> isValid();
-    socket->connectToHost("127.0.0.1", 3230);
-
-    QString path_file = "C:\\c++\\AKIP0002.csv";
-    QString pattern_path = "C:\\c++\\AKIP0001.csv";
-    QString result_path = "C:\\c++\\AKIP0001.csv";
-
-    path_file += "$";
-    path_file += pattern_path;
-    path_file += "$";
-    path_file += result_path;
-    SendToServer(path_file);
-}
-
-
 void MainWindow::SendToServer(QString str)
 {
     Data.clear();
@@ -326,6 +309,8 @@ void MainWindow::slotReadyRead()
                 plot->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
                 plot->setWindowTitle("График");
                 plot->show();
+                QFile f(pattern_path);
+                f.remove();
             }
             qDebug() << str;
             break;
@@ -414,6 +399,51 @@ QString MainWindow::open_dialog()
     }
     delete inputDialog;
     return value;
+}
+
+
+void MainWindow::calculate_pattern()
+{
+    //qDebug() << socket-> isValid();
+    socket->connectToHost("127.0.0.1", 3230);
+
+    QString path_file = "C:\\c++\\AKIP0002.csv";
+    pattern_path = open_dialog();
+    QString result_path = "C:\\c++\\AKIP0001.csv";
+
+    pattern_path += ".txt";
+    QFile file(pattern_path);
+    if (file.open(QIODevice::Append | QIODevice::Text)) {
+       QTextStream out(&file);
+       for (int i = 0; i < item_list_in_order.size(); ++i)
+       {
+            QString label = item_list_in_order[i]->get_name();
+            if (label == SETTINGS)
+                out << "settings" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == PULL_TO_AXIS)
+                out << "multiply" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == LIMIT_AMPLITUDE)
+                out << "amplitude" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == FILTER_1)
+                out << "filter_1" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == FILTER_2)
+                out << "filter_2" << " " << item_list_in_order[i]->get_values(label) << "\n";
+            else if (label == END)
+                out << "end" << " " << item_list_in_order[i]->get_values(label) << "\n";
+       }
+    }
+    else {
+       qDebug() << "Файл не открыт\n";
+    }
+    file.exists();
+    QFileInfo fileInfo(file);
+    pattern_path = fileInfo.absoluteFilePath();
+    path_file += "$";
+    path_file += pattern_path;
+    path_file += "$";
+    path_file += result_path;
+
+    SendToServer(path_file);
 }
 
 
