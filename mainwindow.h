@@ -49,6 +49,7 @@ private slots:
     void on_open_filters_clicked();
     void on_copy_button_clicked();
 
+
     void on_filters_itemChanged(QListWidgetItem *item);
 
     void slotReadyRead();
@@ -63,6 +64,8 @@ private slots:
     void close_filter();
     void ReDrawLines();
     void insert_copy();
+
+    QString open_dialog();
 
     void write_pattern(QString path);
     void read_pattern(QString path);

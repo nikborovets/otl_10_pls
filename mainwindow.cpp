@@ -386,6 +386,37 @@ void MainWindow::delete_item()
 }
 
 
+QString MainWindow::open_dialog()
+{
+    // Создаем диалоговое окно
+    QDialog *inputDialog = new QDialog(this);
+    // Задаем название окна
+    inputDialog->setWindowTitle("Название шаблона");
+    // Создаем поле для ввода текста
+    QLineEdit *lineEdit = new QLineEdit(inputDialog);
+    // Задаем начальное значение поля
+    lineEdit->setText("0");
+    // Создаем кнопки "OK" и "Cancel"
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, inputDialog);
+    // Подключаем сигналы от кнопок к слотам обработки событий
+    connect(buttonBox, &QDialogButtonBox::accepted, inputDialog, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, inputDialog, &QDialog::reject);
+    // Создаем вертикальный layout и добавляем на форму
+    QVBoxLayout *layout = new QVBoxLayout(inputDialog);
+    layout->addWidget(lineEdit);
+    layout->addWidget(buttonBox);
+    // Устанавливаем вертикальный layout
+    inputDialog->setLayout(layout);
+    // Отображаем диалоговое окно и ожидаем его закрытия
+    QString value;
+    if(inputDialog->exec() == QDialog::Accepted) {
+       value = lineEdit->text();
+    }
+    delete inputDialog;
+    return value;
+}
+
+
 void MainWindow::open_settings()
 {
 
@@ -493,32 +524,10 @@ void MainWindow::read_pattern(QString path)
     }
 }
 
+
 void MainWindow::on_save_pattern_clicked()
 {
-    // Создаем диалоговое окно
-    QDialog *inputDialog = new QDialog(this);
-    // Задаем название окна
-    inputDialog->setWindowTitle("Название шаблона");
-    // Создаем поле для ввода текста
-    QLineEdit *lineEdit = new QLineEdit(inputDialog);
-    // Задаем начальное значение поля
-    lineEdit->setText("0");
-    // Создаем кнопки "OK" и "Cancel"
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, inputDialog);
-    // Подключаем сигналы от кнопок к слотам обработки событий
-    connect(buttonBox, &QDialogButtonBox::accepted, inputDialog, &QDialog::accept);
-    connect(buttonBox, &QDialogButtonBox::rejected, inputDialog, &QDialog::reject);
-    // Создаем вертикальный layout и добавляем на форму
-    QVBoxLayout *layout = new QVBoxLayout(inputDialog);
-    layout->addWidget(lineEdit);
-    layout->addWidget(buttonBox);
-    // Устанавливаем вертикальный layout
-    inputDialog->setLayout(layout);
-    // Отображаем диалоговое окно и ожидаем его закрытия
-    if(inputDialog->exec() == QDialog::Accepted) {
-        QString value = lineEdit->text();
-        write_pattern(value);
-    }
-    delete inputDialog;
+    write_pattern(open_dialog());
 }
+
 
