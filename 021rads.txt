@@ -1,0 +1,2 @@
+settings C:\Users\Viktor\Desktop\otl_10_pls\otl_10_pls\AKIP0001.csv
+end C:\Users\Viktor\Desktop\otl_10_pls\otl_10_pls\a17.txt

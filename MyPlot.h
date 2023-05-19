@@ -12,7 +12,7 @@ class GraphWidget: public QWidget
 
 public:
     GraphWidget(QWidget* parent = nullptr);
-    set_settings(std::string fpath);
+    void set_settings(std::string fpath);
 private:
     QWidget* m_widget;
     double xBegin, xEnd, yBegin, yEnd, h;

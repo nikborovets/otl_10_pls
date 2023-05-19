@@ -54,7 +54,7 @@ GraphWidget::GraphWidget(QWidget* parent)
 
 }
 
-GraphWidget::set_settings(std::string fpath)
+void GraphWidget::set_settings(std::string fpath)
 {
     m_plot = new QCustomPlot(this);
 
